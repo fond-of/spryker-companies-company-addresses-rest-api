@@ -1,4 +1,4 @@
-namespace: fond-of-spryker/company-company-addresses-rest-api
+namespace: fond-of-spryker/companies-company-addresses-rest-api
 
 suites:
   unit:

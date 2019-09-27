@@ -2,45 +2,36 @@
 
 declare(strict_types=1);
 
-namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Controller;
+namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress;
 
-use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
+use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\RestAddressAttributesTransfer;
-use Generated\Shared\Transfer\RestCompanyBusinessUnitsRequestAttributesTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressRequestAttributesTransfer;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface;
 use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
-use Spryker\Glue\Kernel\Controller\AbstractController;
 
-/**
- * @method \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiFactory getFactory()
- */
-class CompaniesCompanyAddressesResourceController extends AbstractController
+interface CompanyUnitAddressWriterInterface
 {
     /**
      * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
+     * @param \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
      *
      * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
      */
-    public function postAction(
+    public function createCompanyUnitAddress(
         RestRequestInterface $restRequest,
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
-    ): RestResponseInterface {
-        return $this->getFactory()->createCompanyUnitAddressWriter()
-            ->createCompanyUnitAddress($restRequest, $restCompanyUnitAddressAttributesTransfer);
-    }
-    
+    ): RestResponseInterface;
+
     /**
      * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
+     * @param \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
      *
      * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
      */
-    public function patchAction(
+    public function updateCompanyUnitAddress(
         RestRequestInterface $restRequest,
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
-    ): RestResponseInterface {
-        return $this->getFactory()->createCompanyUnitAddressWriter()
-            ->updateCompanyUnitAddress($restRequest, $restCompanyUnitAddressAttributesTransfer);
-    }
+    ): RestResponseInterface;
 }

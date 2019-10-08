@@ -11,6 +11,7 @@ use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\Company
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiErrorInterface;
 use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
 use FondOfSpryker\Zed\CompanyUnitAddressesRestApi\Business\CompanyUnitAddress\CompanyUnitAddressMapperInterface;
+use Generated\Shared\Transfer\CompanyBusinessUnitCollectionTransfer;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\CompanyTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
@@ -118,9 +119,11 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
             ->setFkCountry($countryTransfer->getIdCountry());
 
         if ($restCompanyUnitAddressAttributesTransfer->getIsDefaultBilling()) {
-            $companyUnitAddressTransfer->setFkCompanyBusinessUnit(
-                $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer())
-            );
+            $companyBusinesUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
+            $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinesUnitTransfer->getIdCompanyBusinessUnit());
+
+            $companyBusinessUnitCollectionTransfer = (new CompanyBusinessUnitCollectionTransfer())->addCompanyBusinessUnit($companyBusinesUnitTransfer);
+            $companyUnitAddressTransfer->setCompanyBusinessUnits($companyBusinessUnitCollectionTransfer);
         }
 
         $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient->createCompanyUnitAddress($companyUnitAddressTransfer);
@@ -235,16 +238,16 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     /**
      * @param \Generated\Shared\Transfer\CompanyTransfer $companyTransfer
      *
-     * @return int|null
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
      */
-    protected function findDefaultCompanyBusinessUnitByCompanyId(CompanyTransfer $companyTransfer): ?int
+    protected function findDefaultCompanyBusinessUnitByCompanyId(CompanyTransfer $companyTransfer): ?CompanyBusinessUnitTransfer
     {
         $companyBusinessUnitTransfer = (new CompanyBusinessUnitTransfer())->setFkCompany($companyTransfer->getIdCompany());
         $companyBusinessUnitTransfer = $this->companiesCompanyAddressesRestApiClient
             ->findDefaultCompanyBusinessUnitByCompanyId($companyBusinessUnitTransfer);
 
         if ($companyBusinessUnitTransfer !== null) {
-            return $companyBusinessUnitTransfer->getIdCompanyBusinessUnit();
+            return $companyBusinessUnitTransfer;
         }
 
         return null;

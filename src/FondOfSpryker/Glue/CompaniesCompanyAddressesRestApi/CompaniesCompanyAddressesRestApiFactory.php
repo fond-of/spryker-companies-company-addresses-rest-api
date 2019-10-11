@@ -14,6 +14,7 @@ use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\Res
 use FondOfSpryker\Glue\CompaniesCompanyUsersRestApi\Processor\CompanyUser\CompanyUserReader;
 use FondOfSpryker\Glue\CompaniesCompanyUsersRestApi\Processor\CompanyUser\CompanyUserReaderInterface;
 use Spryker\Client\Company\CompanyClientInterface;
+use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
 use Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface;
 use Spryker\Glue\Kernel\AbstractFactory;
 
@@ -27,12 +28,23 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
         return new CompanyUnitAddressWriter(
             $this->getResourceBuilder(),
             $this->getCompanyUnitAddressClient(),
+            $this->getCompanyBusinessUnitClient(),
             $this->getCompanyClient(),
             $this->getCountryClient(),
             $this->getClient(),
             $this->createCompanyUnitAddressResourceMapper(),
             $this->createRestApiError()
         );
+    }
+
+    /**
+     * @return \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
+     *
+     * @throws \Spryker\Glue\Kernel\Exception\Container\ContainerKeyNotFoundException
+     */
+    public function getCompanyBusinessUnitClient(): CompanyBusinessUnitClientInterface
+    {
+        return $this->getProvidedDependency(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COMPANY_BUSINESS_UNIT);
     }
 
     /**

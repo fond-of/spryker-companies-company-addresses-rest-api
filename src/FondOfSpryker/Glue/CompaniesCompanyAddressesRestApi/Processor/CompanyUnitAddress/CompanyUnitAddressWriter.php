@@ -33,6 +33,11 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
 {
     /**
+     * @var \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
+     */
+    protected  $companyBusinessUnitClient;
+
+    /**
      * @var \FondOfSpryker\Client\CompaniesCompanyAddressRestApi\CompaniesCompanyAddressesRestApiClientInterface
      */
     protected $companiesCompanyAddressesRestApiClient;
@@ -72,6 +77,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
      *
      * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface $restResourceBuilder
      * @param \Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface $companyUnitAddressClient
+     * @param \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface $companyBusinessUnitClient
      * @param \Spryker\Client\Company\CompanyClientInterface $companyClient
      * @param \FondOfSpryker\Client\Country\CountryClientInterface $countryClient
      * @param \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiClientInterface $companiesCompanyAddressesRestApiClient
@@ -81,6 +87,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     public function __construct(
         RestResourceBuilderInterface $restResourceBuilder,
         CompanyUnitAddressClientInterface $companyUnitAddressClient,
+        CompanyBusinessUnitClientInterface $companyBusinessUnitClient,
         CompanyClientInterface $companyClient,
         CountryClientInterface $countryClient,
         CompaniesCompanyAddressesRestApiClientInterface $companiesCompanyAddressesRestApiClient,
@@ -88,6 +95,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         RestApiErrorInterface $restApiError
     ) {
         $this->restResourceBuilder = $restResourceBuilder;
+        $this->companyBusinessUnitClient = $companyBusinessUnitClient;
         $this->companyUnitAddressClient = $companyUnitAddressClient;
         $this->companiesCompanyAddressesRestApiClient = $companiesCompanyAddressesRestApiClient;
         $this->companyUnitAddressResourceMapper = $companyUnitAddressResourceMapper;
@@ -118,13 +126,10 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
             ->setFkCompany($companyResponseTransfer->getCompanyTransfer()->getIdCompany())
             ->setFkCountry($countryTransfer->getIdCountry());
 
-        if ($restCompanyUnitAddressAttributesTransfer->getIsDefaultBilling()) {
-            $companyBusinesUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
-            $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinesUnitTransfer->getIdCompanyBusinessUnit());
-
-            $companyBusinessUnitCollectionTransfer = (new CompanyBusinessUnitCollectionTransfer())->addCompanyBusinessUnit($companyBusinesUnitTransfer);
-            $companyUnitAddressTransfer->setCompanyBusinessUnits($companyBusinessUnitCollectionTransfer);
-        }
+        $companyBusinesUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
+        $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinesUnitTransfer->getIdCompanyBusinessUnit());
+        $companyBusinessUnitCollectionTransfer = (new CompanyBusinessUnitCollectionTransfer())->addCompanyBusinessUnit($companyBusinesUnitTransfer);
+        $companyUnitAddressTransfer->setCompanyBusinessUnits($companyBusinessUnitCollectionTransfer);
 
         $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient->createCompanyUnitAddress($companyUnitAddressTransfer);
 
@@ -167,13 +172,10 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         $countryTransfer = $this->findCountryByIso2Code($restCompanyUnitAddressAttributesTransfer);
         $companyUnitAddressTransfer->setFkCountry($countryTransfer->getIdCountry());
 
-        if ($restCompanyUnitAddressAttributesTransfer->getIsDefaultBilling()) {
-            $companyTransfer = (new CompanyTransfer())->setUuid($this->findCompanyIdentifier($restRequest));
-            $companyResponseTransfer = $this->companyClient->findCompanyByUuid($companyTransfer);
-            $companyUnitAddressTransfer->setFkCompanyBusinessUnit(
-                $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer())
-            );
-        }
+        $companyTransfer = (new CompanyTransfer())->setUuid($this->findCompanyIdentifier($restRequest));
+        $companyResponseTransfer = $this->companyClient->findCompanyByUuid($companyTransfer);
+        $companyBusinesUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
+        $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinesUnitTransfer->getIdCompanyBusinessUnit());
 
         $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient->updateCompanyUnitAddress($companyUnitAddressTransfer);
 

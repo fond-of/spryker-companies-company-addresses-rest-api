@@ -9,6 +9,7 @@ use Spryker\Glue\Kernel\Container;
 
 class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleDependencyProvider
 {
+    public const CLIENT_COMPANY_BUSINESS_UNIT = 'CLIENT_COMPANY_BUSINESS_UNIT';
     public const CLIENT_COMPANY = 'CLIENT_COMPANY';
     public const CLIENT_COMPANY_UNIT_ADDRESS = 'CLIENT_COMPANY_UNIT_ADDRESS';
     public const CLIENT_COUNTRY = 'CLIENT_COUNTRY';
@@ -22,9 +23,24 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
     {
         $container = parent::provideDependencies($container);
 
+        $container = $this->addCompanyBusinessUnitClient($container);
         $container = $this->addCompanyUnitAddressClient($container);
         $container = $this->addCompanyClient($container);
         $container = $this->addCountryClient($container);
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Glue\Kernel\Container $container
+     *
+     * @return \Spryker\Glue\Kernel\Container
+     */
+    protected function addCompanyBusinessUnitClient(Container $container): Container
+    {
+        $container[static::CLIENT_COMPANY_BUSINESS_UNIT] = static function (Container $container) {
+            return $container->getLocator()->companyBusinessUnit()->client();
+        };
 
         return $container;
     }

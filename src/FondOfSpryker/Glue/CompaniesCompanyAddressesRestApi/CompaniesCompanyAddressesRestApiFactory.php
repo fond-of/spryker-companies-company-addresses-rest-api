@@ -1,27 +1,28 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi;
 
-use FondOfSpryker\Client\Country\CountryClient;
 use FondOfSpryker\Client\Country\CountryClientInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress\CompanyUnitAddressWriter;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress\CompanyUnitAddressWriterInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapper;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapperInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiError;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiErrorInterface;
-use FondOfSpryker\Glue\CompaniesCompanyUsersRestApi\Processor\CompanyUser\CompanyUserReader;
-use FondOfSpryker\Glue\CompaniesCompanyUsersRestApi\Processor\CompanyUser\CompanyUserReaderInterface;
 use Spryker\Client\Company\CompanyClientInterface;
 use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
 use Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface;
 use Spryker\Glue\Kernel\AbstractFactory;
 
+/**
+ * @method \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiClient getClient()
+ */
 class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
 {
     /**
-     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyAddress\CompanyUnitAddressWriterInterface
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress\CompanyUnitAddressWriterInterface
      */
     public function createCompanyUnitAddressWriter(): CompanyUnitAddressWriterInterface
     {
@@ -38,9 +39,9 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
+     * @throws
      *
-     * @throws \Spryker\Glue\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
      */
     public function getCompanyBusinessUnitClient(): CompanyBusinessUnitClientInterface
     {
@@ -48,9 +49,9 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Company\CompanyClientInterface
+     * @throws
      *
-     * @throws \Spryker\Glue\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface
      */
     public function getCompanyUnitAddressClient(): CompanyUnitAddressClientInterface
     {
@@ -58,9 +59,9 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @return \Spryker\Client\Company\CompanyClientInterface
+     * @throws
      *
-     * @throws \Spryker\Glue\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \Spryker\Client\Company\CompanyClientInterface
      */
     public function getCompanyClient(): CompanyClientInterface
     {
@@ -68,9 +69,9 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @return \FondOfSpryker\Client\Country\CountryClientInterface
+     * @throws
      *
-     * @throws \Spryker\Glue\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @return \FondOfSpryker\Client\Country\CountryClientInterface
      */
     public function getCountryClient(): CountryClientInterface
     {
@@ -88,7 +89,7 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     /**
      * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapper
      */
-    public function createCompanyUnitAddressResourceMapper(): CompanyUnitAddressResourceMapper
+    public function createCompanyUnitAddressResourceMapper(): CompanyUnitAddressResourceMapperInterface
     {
         return new CompanyUnitAddressResourceMapper();
     }

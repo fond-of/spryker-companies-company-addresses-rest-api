@@ -25,12 +25,11 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
     /**
      * @param \Generated\Shared\Transfer\CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyBusinessUnitResponseTransfer
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
      */
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-    ): ?CompanyBusinessUnitTransfer
-    {
+    ): ?CompanyBusinessUnitTransfer {
         $companyBusinessUnitTransfer = $this->zedRequestClient->call(
             '/companies-company-addresses-rest-api/gateway/find-default-company-business-unit-by-company-id',
             $companyBusinessUnitTransfer

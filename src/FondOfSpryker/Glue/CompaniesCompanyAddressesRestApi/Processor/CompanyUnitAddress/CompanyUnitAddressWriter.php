@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress;
 
@@ -10,18 +10,12 @@ use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddresse
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapperInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiErrorInterface;
 use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
-use FondOfSpryker\Zed\CompanyUnitAddressesRestApi\Business\CompanyUnitAddress\CompanyUnitAddressMapperInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitCollectionTransfer;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\CompanyTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Generated\Shared\Transfer\CountryTransfer;
-use Generated\Shared\Transfer\RestCompanyBusinessUnitsRequestAttributesTransfer;
-use Generated\Shared\Transfer\RestCompanyBusinessUnitsResponseTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
-use Generated\Shared\Transfer\RestCompanyUnitAddressesRequestAttributesTransfer;
-use Generated\Shared\Transfer\RestCompanyUnitAddressRequestAttributesTransfer;
 use Spryker\Client\Company\CompanyClientInterface;
 use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
 use Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface;
@@ -35,10 +29,10 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     /**
      * @var \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
      */
-    protected  $companyBusinessUnitClient;
+    protected $companyBusinessUnitClient;
 
     /**
-     * @var \FondOfSpryker\Client\CompaniesCompanyAddressRestApi\CompaniesCompanyAddressesRestApiClientInterface
+     * @var \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiClientInterface
      */
     protected $companiesCompanyAddressesRestApiClient;
 
@@ -126,9 +120,9 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
             ->setFkCompany($companyResponseTransfer->getCompanyTransfer()->getIdCompany())
             ->setFkCountry($countryTransfer->getIdCountry());
 
-        $companyBusinesUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
-        $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinesUnitTransfer->getIdCompanyBusinessUnit());
-        $companyBusinessUnitCollectionTransfer = (new CompanyBusinessUnitCollectionTransfer())->addCompanyBusinessUnit($companyBusinesUnitTransfer);
+        $companyBusinessUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
+        $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinessUnitTransfer->getIdCompanyBusinessUnit());
+        $companyBusinessUnitCollectionTransfer = (new CompanyBusinessUnitCollectionTransfer())->addCompanyBusinessUnit($companyBusinessUnitTransfer);
         $companyUnitAddressTransfer->setCompanyBusinessUnits($companyBusinessUnitCollectionTransfer);
 
         $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient->createCompanyUnitAddress($companyUnitAddressTransfer);
@@ -151,8 +145,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     public function updateCompanyUnitAddress(
         RestRequestInterface $restRequest,
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
-    ): RestResponseInterface
-    {
+    ): RestResponseInterface {
         $restResponse = $this->restResourceBuilder->createRestResponse();
 
         if (!$restRequest->getResource()->getId()) {
@@ -165,7 +158,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
             ->getCompanyUnitAddressTransfer();
 
         if ($companyUnitAddressTransfer === null) {
-            return $this->restApiError->addCompanyUnitAdddressNotFoundError($restResponse);
+            return $this->restApiError->addCompanyUnitAddressNotFoundError($restResponse);
         }
 
         $companyUnitAddressTransfer->fromArray($restCompanyUnitAddressAttributesTransfer->modifiedToArray(), true);
@@ -174,8 +167,8 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
 
         $companyTransfer = (new CompanyTransfer())->setUuid($this->findCompanyIdentifier($restRequest));
         $companyResponseTransfer = $this->companyClient->findCompanyByUuid($companyTransfer);
-        $companyBusinesUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
-        $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinesUnitTransfer->getIdCompanyBusinessUnit());
+        $companyBusinessUnitTransfer = $this->findDefaultCompanyBusinessUnitByCompanyId($companyResponseTransfer->getCompanyTransfer());
+        $companyUnitAddressTransfer->setFkCompanyBusinessUnit($companyBusinessUnitTransfer->getIdCompanyBusinessUnit());
 
         $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient->updateCompanyUnitAddress($companyUnitAddressTransfer);
 
@@ -205,7 +198,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
 
     /**
      * @param \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
-     * 
+     *
      * @return \Generated\Shared\Transfer\CountryTransfer
      */
     protected function findCountryByIso2Code(RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer): CountryTransfer
@@ -217,11 +210,11 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     /**
      * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
      *
-     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress\RestResourceInterface
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface
      */
     protected function getCompanyUnitAddressResource(
-        CompanyUnitAddressTransfer $companyUnitAddressTransfer): RestResourceInterface
-    {
+        CompanyUnitAddressTransfer $companyUnitAddressTransfer
+    ): RestResourceInterface {
         $restCompanyUnitAddressResponseTransferAddressAttributesTransfer = $this
             ->companyUnitAddressResourceMapper
             ->mapCompanyUnitAddressTransferToRestCompanyUnitAddressAddressAttributesTransfer(
@@ -254,5 +247,4 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
 
         return null;
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi;
 
@@ -22,5 +22,4 @@ class CompaniesCompanyAddressesRestApiConfig extends AbstractBundleConfig
     public const RESPONSE_MESSAGE_BUSINESS_UNIT_UUID_MISSING = 'Uuid value is missing.';
     public const RESPONSE_MESSAGE_FAILED_UPDATING_BUSINESS_UNIT_ADDRESS = 'Business Unit Address could not be updated.';
     public const RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_NOT_FOUND = 'Business Unit Address could not be found.';
-
 }

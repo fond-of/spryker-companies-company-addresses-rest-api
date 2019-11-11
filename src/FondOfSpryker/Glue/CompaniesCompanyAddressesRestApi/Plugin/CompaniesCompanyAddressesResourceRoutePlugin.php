@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Plugin;
 
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
 use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
-use Generated\Shared\Transfer\RestAddressAttributesTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
-use phpDocumentor\GraphViz\Exception;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceRouteCollectionInterface;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceRoutePluginInterface;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceWithParentPluginInterface;
@@ -23,8 +21,7 @@ class CompaniesCompanyAddressesResourceRoutePlugin extends AbstractPlugin implem
      */
     public function configure(
         ResourceRouteCollectionInterface $resourceRouteCollection
-    ): ResourceRouteCollectionInterface
-    {
+    ): ResourceRouteCollectionInterface {
         $resourceRouteCollection
             ->addPost(CompaniesCompanyAddressesRestApiConfig::ACTION_COMPANIES_COMPANY_ADDRESSES_POST, true)
             ->addPatch(CompaniesCompanyAddressesRestApiConfig::ACTION_COMPANIES_COMPANY_ADDRESSES_PATCH, true);

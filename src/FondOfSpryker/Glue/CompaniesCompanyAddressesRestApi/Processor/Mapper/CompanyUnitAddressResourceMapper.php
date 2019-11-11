@@ -2,7 +2,6 @@
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper;
 
-use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapperInterface;
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 
@@ -21,7 +20,7 @@ class CompanyUnitAddressResourceMapper implements CompanyUnitAddressResourceMapp
     }
 
     /**
-     * @param \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\RestAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
+     * @param \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
      *
      * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
      */

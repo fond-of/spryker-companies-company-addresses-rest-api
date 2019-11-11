@@ -19,7 +19,7 @@ interface CompanyUnitAddressResourceMapperInterface
     /**
      * @param \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
      *
-     * @return \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer
+     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
      */
     public function mapRestCompanyUnitAddressAttributesTransferToCompanyUnitAddressTransfer(
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer

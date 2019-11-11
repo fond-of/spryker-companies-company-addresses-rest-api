@@ -3,9 +3,6 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Communication\Controller;
 
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
-use Generated\Shared\Transfer\RestCompanyUnitAddressesRequestAttributesTransfer;
-use Generated\Shared\Transfer\RestCompanyUnitAddressesRequestTransfer;
-use Generated\Shared\Transfer\RestCompanyUnitAddressesResponseTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
 /**

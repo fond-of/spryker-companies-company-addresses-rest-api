@@ -2,8 +2,9 @@
 
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiFacadeInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
+use Generated\Shared\Transfer\RestCompanyUnitAddressesRequestAttributesTransfer;
+use Generated\Shared\Transfer\RestCompanyUnitAddressesResponseTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -18,8 +19,7 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
      */
     public function findDefaultCompanyBusinessUnitByCompanyIdAction(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-    ): CompanyBusinessUnitTransfer
-    {
+    ): CompanyBusinessUnitTransfer {
         return $this->getFactory()
             ->createCompanyBusinessUnitReader()
             ->findDefaultCompanyBusinessUnitByCompanyId($companyBusinessUnitTransfer);
@@ -37,6 +37,4 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
             ->createCompanyUnitAddressReader()
             ->findCompanyUnitAddressByExternalReference($restCompanyUnitAddressesRequestAttributesTransfer);
     }
-
-
 }

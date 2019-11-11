@@ -17,7 +17,8 @@ class CompanyBusinessUnitReader implements CompanyBusinessUnitReaderInterface
      *
      * @param \Spryker\Zed\CompanyBusinessUnit\Business\CompanyBusinessUnitFacadeInterface $companyBusinessUnitFacade
      */
-    public function __construct(CompanyBusinessUnitFacadeInterface $companyBusinessUnitFacade) {
+    public function __construct(CompanyBusinessUnitFacadeInterface $companyBusinessUnitFacade)
+    {
         $this->companyBusinessUnitFacade = $companyBusinessUnitFacade;
     }
 
@@ -29,11 +30,7 @@ class CompanyBusinessUnitReader implements CompanyBusinessUnitReaderInterface
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): CompanyBusinessUnitTransfer {
-
         $companyBusinessUnitTransfer->requireFkCompany();
-
-        $companyBusinessUnitTransfer = $this->companyBusinessUnitFacade
-            ->findDefaultBusinessUnitByCompanyId($companyBusinessUnitTransfer->getFkCompany());
 
         return $this->companyBusinessUnitFacade
             ->findDefaultBusinessUnitByCompanyId($companyBusinessUnitTransfer->getFkCompany());

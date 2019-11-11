@@ -3,7 +3,6 @@
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation;
 
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\RestErrorMessageTransfer;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +17,9 @@ class RestApiError implements RestApiErrorInterface
     public function processCompanyUnitAddressErrorOnCreate(RestResponseInterface $restResponse): RestResponseInterface
     {
         $restErrorTransfer = (new RestErrorMessageTransfer())
-            ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_FAILED_CREATING_ADDRESS)
+            ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_FAILED_CREATING_BUSINESS_UNIT_ADDRESS)
             ->setStatus(Response::HTTP_BAD_REQUEST)
-            ->setDetail(CompaniesCompanyAddressesRestApiConfig::RESPONSE_MESSAGE_FAILED_CREATING_ADDRESS);
+            ->setDetail(CompaniesCompanyAddressesRestApiConfig::RESPONSE_MESSAGE_FAILED_CREATING_BUSINESS_UNIT_ADDRESS);
 
         return $restResponse->addError($restErrorTransfer);
     }
@@ -30,7 +29,8 @@ class RestApiError implements RestApiErrorInterface
      *
      * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
      */
-    public function addCompanyUnitAddressUuidMissingError(RestResponseInterface $restResponse): RestResponseInterface {
+    public function addCompanyUnitAddressUuidMissingError(RestResponseInterface $restResponse): RestResponseInterface
+    {
 
         $restErrorTransfer = (new RestErrorMessageTransfer())
             ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_BUSINESS_UNIT_UUID_MISSING)
@@ -45,7 +45,7 @@ class RestApiError implements RestApiErrorInterface
      *
      * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
      */
-    public function addCompanyUnitAdddressNotFoundError(RestResponseInterface $restResponse): RestResponseInterface
+    public function addCompanyUnitAddressNotFoundError(RestResponseInterface $restResponse): RestResponseInterface
     {
         $restErrorTransfer = (new RestErrorMessageTransfer())
             ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_BUSINESS_UNIT_ADDRESS_NOT_FOUND)

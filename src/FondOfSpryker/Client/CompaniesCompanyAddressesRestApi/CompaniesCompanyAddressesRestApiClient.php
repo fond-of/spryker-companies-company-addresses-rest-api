@@ -2,7 +2,6 @@
 
 namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi;
 
-use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiClientInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
@@ -18,8 +17,7 @@ class CompaniesCompanyAddressesRestApiClient extends AbstractClient implements C
      */
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-    ): CompanyBusinessUnitTransfer
-    {
+    ): CompanyBusinessUnitTransfer {
         return $this->getFactory()
             ->createZedCompaniesCompanyAddressesRestApiStub()
             ->findDefaultCompanyBusinessUnitByCompanyId($companyBusinessUnitTransfer);

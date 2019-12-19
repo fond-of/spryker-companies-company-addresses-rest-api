@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi;
 
@@ -11,6 +11,7 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
 {
     public const CLIENT_COMPANY_BUSINESS_UNIT = 'CLIENT_COMPANY_BUSINESS_UNIT';
     public const CLIENT_COMPANY = 'CLIENT_COMPANY';
+    public const CLIENT_COMPANY_USER = 'CLIENT_COMPANY_USER';
     public const CLIENT_COMPANY_UNIT_ADDRESS = 'CLIENT_COMPANY_UNIT_ADDRESS';
     public const CLIENT_COUNTRY = 'CLIENT_COUNTRY';
 
@@ -27,6 +28,7 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
         $container = $this->addCompanyUnitAddressClient($container);
         $container = $this->addCompanyClient($container);
         $container = $this->addCountryClient($container);
+        $container = $this->addCompanyUserClient($container);
 
         return $container;
     }
@@ -68,6 +70,20 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
     {
         $container[static::CLIENT_COMPANY] = static function (Container $container) {
             return $container->getLocator()->company()->client();
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Glue\Kernel\Container $container
+     *
+     * @return \Spryker\Glue\Kernel\Container
+     */
+    protected function addCompanyUserClient(Container $container): Container
+    {
+        $container[static::CLIENT_COMPANY_USER] = static function (Container $container) {
+            return $container->getLocator()->companyUser()->client();
         };
 
         return $container;

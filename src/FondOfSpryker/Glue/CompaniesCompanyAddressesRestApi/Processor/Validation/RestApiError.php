@@ -3,7 +3,6 @@
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation;
 
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\RestErrorMessageTransfer;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +29,8 @@ class RestApiError implements RestApiErrorInterface
      *
      * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
      */
-    public function addCompanyUnitAddressUuidMissingError(RestResponseInterface $restResponse): RestResponseInterface {
+    public function addCompanyUnitAddressUuidMissingError(RestResponseInterface $restResponse): RestResponseInterface
+    {
 
         $restErrorTransfer = (new RestErrorMessageTransfer())
             ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_BUSINESS_UNIT_UUID_MISSING)
@@ -51,6 +51,21 @@ class RestApiError implements RestApiErrorInterface
             ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_BUSINESS_UNIT_ADDRESS_NOT_FOUND)
             ->setStatus(Response::HTTP_BAD_REQUEST)
             ->setDetail(CompaniesCompanyAddressesRestApiConfig::RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_NOT_FOUND);
+
+        return $restResponse->addError($restErrorTransfer);
+    }
+
+    /**
+     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface $restResponse
+     *
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
+     */
+    public function addCompanyUnitAddressForCompanyNotFoundError(RestResponseInterface $restResponse): RestResponseInterface
+    {
+        $restErrorTransfer = (new RestErrorMessageTransfer())
+            ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_BUSINESS_UNIT_ADDRESS_FOR_COMPANY_NOT_FOUND)
+            ->setStatus(Response::HTTP_BAD_REQUEST)
+            ->setDetail(CompaniesCompanyAddressesRestApiConfig::RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_FOR_COMPANY_NOT_FOUND);
 
         return $restResponse->addError($restErrorTransfer);
     }

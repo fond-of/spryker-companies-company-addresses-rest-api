@@ -241,7 +241,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
             return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
         }
 
-        $this->companyUnitAddressClient->deleteCompanyUnitAddress(
+        $companyUnitAddressResponseTransfer = $this->companiesCompanyAddressesRestApiClient->deleteCompanyUnitAddress(
             $companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer()
         );
 

@@ -2,12 +2,16 @@
 
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiFacadeInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
+use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
+use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Generated\Shared\Transfer\RestCompanyUnitAddressesRequestAttributesTransfer;
+use Generated\Shared\Transfer\RestCompanyUnitAddressesResponseTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
  * @method \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiBusinessFactory getFactory()
+ * @method \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiEntityManagerInterface getEntityManager()
  */
 class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements CompaniesCompanyAddressesRestApiFacadeInterface
 {
@@ -18,8 +22,7 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
      */
     public function findDefaultCompanyBusinessUnitByCompanyIdAction(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-    ): CompanyBusinessUnitTransfer
-    {
+    ): CompanyBusinessUnitTransfer {
         return $this->getFactory()
             ->createCompanyBusinessUnitReader()
             ->findDefaultCompanyBusinessUnitByCompanyId($companyBusinessUnitTransfer);
@@ -38,5 +41,31 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
             ->findCompanyUnitAddressByExternalReference($restCompanyUnitAddressesRequestAttributesTransfer);
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     *
+     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
+     */
+    public function deleteCompanyUnitAddress(
+        CompanyUnitAddressTransfer $companyUnitAddressTransfer
+    ): CompanyUnitAddressResponseTransfer {
 
+        return $this->getFactory()
+            ->createCompanyUnitAddressWriter()
+            ->deleteCompanyUnitAddress($companyUnitAddressTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     *
+     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
+     */
+    public function getCompanyUnitAddressById(
+        CompanyUnitAddressTransfer $companyUnitAddressTransfer
+    ): CompanyUnitAddressTransfer {
+
+        return $this->getFactory()
+            ->createCompanyUnitAddressReader()
+            ->getCompanyUnitAddressById($companyUnitAddressTransfer);
+    }
 }

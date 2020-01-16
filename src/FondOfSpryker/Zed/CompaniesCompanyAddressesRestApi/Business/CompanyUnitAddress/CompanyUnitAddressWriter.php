@@ -7,9 +7,12 @@ use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\Compani
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiEntityManagerInterface;
 use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Spryker\Zed\Kernel\Persistence\EntityManager\TransactionTrait;
 
 class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
 {
+    use TransactionTrait;
+
     /**
      * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiEntityManagerInterface
      */

@@ -4,7 +4,6 @@ namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi;
 
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Communication\Plugin\CompanyBusinessUnitCompanyUnitAddressExpanderPlugin;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventBridge;
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventInterface;
 use Orm\Zed\CompanyUnitAddress\Persistence\SpyCompanyUnitAddressQuery;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
@@ -97,7 +96,7 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addEventFacade(Container $container): CompaniesCompanyAddressesRestApiToEventInterface
+    protected function addEventFacade(Container $container): Container
     {
         $container[static::FACADE_EVENT] = function (Container $container) {
             return new CompaniesCompanyAddressesRestApiToEventBridge($container->getLocator()->event()->facade());

@@ -2,21 +2,27 @@
 
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress;
 
+use ArrayObject;
 use Codeception\Test\Unit;
 use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiClientInterface;
 use FondOfSpryker\Client\Country\CountryClientInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapperInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiErrorInterface;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidatorInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\CompanyResponseTransfer;
 use Generated\Shared\Transfer\CompanyTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Generated\Shared\Transfer\CompanyUserCollectionTransfer;
+use Generated\Shared\Transfer\CompanyUserTransfer;
 use Generated\Shared\Transfer\CountryTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
+use Generated\Shared\Transfer\RestUserTransfer;
 use Spryker\Client\Company\CompanyClientInterface;
 use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
 use Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface;
+use Spryker\Client\CompanyUser\CompanyUserClientInterface;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface;
@@ -135,6 +141,46 @@ class CompanyUnitAddressWriterTest extends Unit
     protected $idCountry;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Client\CompanyUser\CompanyUserClientInterface
+     */
+    protected $companyUserClientInterfaceMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidatorInterface
+     */
+    protected $restApiValidatorInterfaceMock;
+
+    /**
+     * @var int
+     */
+    protected $idCompany;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\RestUserTransfer
+     */
+    protected $restUserTransferMock;
+
+    /**
+     * @var string
+     */
+    protected $naturalIdentifier;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CompanyUserCollectionTransfer
+     */
+    protected $companyUserCollectionTransferMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CompanyUserTransfer
+     */
+    protected $companyUserTransferMock;
+
+    /**
+     * @var \ArrayObject|\Generated\Shared\Transfer\CompanyUserTransfer[]
+     */
+    protected $companyUserTransferMocks;
+
+    /**
      * @return void
      */
     protected function _before(): void
@@ -219,15 +265,45 @@ class CompanyUnitAddressWriterTest extends Unit
 
         $this->idCountry = 2;
 
+        $this->companyUserClientInterfaceMock = $this->getMockBuilder(CompanyUserClientInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->restApiValidatorInterfaceMock = $this->getMockBuilder(RestApiValidatorInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->idCompany = 3;
+
+        $this->restUserTransferMock = $this->getMockBuilder(RestUserTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->naturalIdentifier = 'natural-identifier';
+
+        $this->companyUserCollectionTransferMock = $this->getMockBuilder(CompanyUserCollectionTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->companyUserTransferMock = $this->getMockBuilder(CompanyUserTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->companyUserTransferMocks = new ArrayObject([
+            $this->companyUserTransferMock,
+        ]);
+
         $this->companyUnitAddressWriter = new CompanyUnitAddressWriter(
             $this->restResourceBuilderInterfaceMock,
             $this->companyUnitAddressClientInterfaceMock,
             $this->companyBusinessUnitClientInterfaceMock,
             $this->companyClientInterfaceMock,
+            $this->companyUserClientInterfaceMock,
             $this->countryClientInterfaceMock,
             $this->companiesCompanyAddressesRestApiClientInterfaceMock,
             $this->companyUnitAddressResourceMapperInterfaceMock,
-            $this->restApiErrorInterfaceMock
+            $this->restApiErrorInterfaceMock,
+            $this->restApiValidatorInterfaceMock
         );
     }
 
@@ -627,6 +703,308 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
                 $this->restCompanyUnitAddressAttributesTransferMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddress(): void
+    {
+        $this->restResourceBuilderInterfaceMock->expects($this->atLeastOnce())
+            ->method('createRestResponse')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getResource')
+            ->willReturn($this->restResourceInterfaceMock);
+
+        $this->restResourceInterfaceMock->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($this->id);
+
+        $this->companyUnitAddressClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('findCompanyBusinessUnitAddressByUuid')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->companyUnitAddressResponseTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUnitAddressTransfer')
+            ->willReturn($this->companyUnitAddressTransferMock);
+
+        $this->companyUnitAddressTransferMock->expects($this->atLeastOnce())
+            ->method('getFkCompany')
+            ->willReturn($this->idCompany);
+
+        $this->companyClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getCompanyById')
+            ->willReturn($this->companyTransferMock);
+
+        $this->restApiValidatorInterfaceMock->expects($this->atLeastOnce())
+            ->method('isCompanyAddress')
+            ->willReturn(true);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getRestUser')
+            ->willReturn($this->restUserTransferMock);
+
+        $this->restUserTransferMock->expects($this->atLeastOnce())
+            ->method('getNaturalIdentifier')
+            ->willReturn($this->naturalIdentifier);
+
+        $this->companyUserClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getActiveCompanyUsersByCustomerReference')
+            ->willReturn($this->companyUserCollectionTransferMock);
+
+        $this->companyUserCollectionTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUsers')
+            ->willReturn($this->companyUserTransferMocks);
+
+        $this->restApiValidatorInterfaceMock->expects($this->atLeastOnce())
+            ->method('isCustomerCompanyUser')
+            ->willReturn(true);
+
+        $this->companyUnitAddressResponseTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUnitAddressTransfer')
+            ->willReturn($this->companyUnitAddressTransferMock);
+
+        $this->companiesCompanyAddressesRestApiClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('deleteCompanyUnitAddress')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->companyUnitAddressWriter->deleteCompanyUnitAddress(
+                $this->restRequestInterfaceMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddressIdNull(): void
+    {
+        $this->restResourceBuilderInterfaceMock->expects($this->atLeastOnce())
+            ->method('createRestResponse')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getResource')
+            ->willReturn($this->restResourceInterfaceMock);
+
+        $this->restResourceInterfaceMock->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn(null);
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->companyUnitAddressWriter->deleteCompanyUnitAddress(
+                $this->restRequestInterfaceMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddressCompanyUnitAddressTransferNull(): void
+    {
+        $this->restResourceBuilderInterfaceMock->expects($this->atLeastOnce())
+            ->method('createRestResponse')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getResource')
+            ->willReturn($this->restResourceInterfaceMock);
+
+        $this->restResourceInterfaceMock->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($this->id);
+
+        $this->companyUnitAddressClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('findCompanyBusinessUnitAddressByUuid')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->companyUnitAddressResponseTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUnitAddressTransfer')
+            ->willReturn(null);
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->companyUnitAddressWriter->deleteCompanyUnitAddress(
+                $this->restRequestInterfaceMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddressIsNoCompanyAddress(): void
+    {
+        $this->restResourceBuilderInterfaceMock->expects($this->atLeastOnce())
+            ->method('createRestResponse')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getResource')
+            ->willReturn($this->restResourceInterfaceMock);
+
+        $this->restResourceInterfaceMock->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($this->id);
+
+        $this->companyUnitAddressClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('findCompanyBusinessUnitAddressByUuid')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->companyUnitAddressResponseTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUnitAddressTransfer')
+            ->willReturn($this->companyUnitAddressTransferMock);
+
+        $this->companyUnitAddressTransferMock->expects($this->atLeastOnce())
+            ->method('getFkCompany')
+            ->willReturn($this->idCompany);
+
+        $this->companyClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getCompanyById')
+            ->willReturn($this->companyTransferMock);
+
+        $this->restApiValidatorInterfaceMock->expects($this->atLeastOnce())
+            ->method('isCompanyAddress')
+            ->willReturn(false);
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->companyUnitAddressWriter->deleteCompanyUnitAddress(
+                $this->restRequestInterfaceMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddressCompanyUsersNull(): void
+    {
+        $this->restResourceBuilderInterfaceMock->expects($this->atLeastOnce())
+            ->method('createRestResponse')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getResource')
+            ->willReturn($this->restResourceInterfaceMock);
+
+        $this->restResourceInterfaceMock->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($this->id);
+
+        $this->companyUnitAddressClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('findCompanyBusinessUnitAddressByUuid')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->companyUnitAddressResponseTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUnitAddressTransfer')
+            ->willReturn($this->companyUnitAddressTransferMock);
+
+        $this->companyUnitAddressTransferMock->expects($this->atLeastOnce())
+            ->method('getFkCompany')
+            ->willReturn($this->idCompany);
+
+        $this->companyClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getCompanyById')
+            ->willReturn($this->companyTransferMock);
+
+        $this->restApiValidatorInterfaceMock->expects($this->atLeastOnce())
+            ->method('isCompanyAddress')
+            ->willReturn(true);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getRestUser')
+            ->willReturn($this->restUserTransferMock);
+
+        $this->restUserTransferMock->expects($this->atLeastOnce())
+            ->method('getNaturalIdentifier')
+            ->willReturn($this->naturalIdentifier);
+
+        $this->companyUserClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getActiveCompanyUsersByCustomerReference')
+            ->willReturn($this->companyUserCollectionTransferMock);
+
+        $this->companyUserCollectionTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUsers')
+            ->willReturn(new ArrayObject());
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->companyUnitAddressWriter->deleteCompanyUnitAddress(
+                $this->restRequestInterfaceMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddressIsNoCustomerCompanyUser(): void
+    {
+        $this->restResourceBuilderInterfaceMock->expects($this->atLeastOnce())
+            ->method('createRestResponse')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getResource')
+            ->willReturn($this->restResourceInterfaceMock);
+
+        $this->restResourceInterfaceMock->expects($this->atLeastOnce())
+            ->method('getId')
+            ->willReturn($this->id);
+
+        $this->companyUnitAddressClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('findCompanyBusinessUnitAddressByUuid')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->companyUnitAddressResponseTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUnitAddressTransfer')
+            ->willReturn($this->companyUnitAddressTransferMock);
+
+        $this->companyUnitAddressTransferMock->expects($this->atLeastOnce())
+            ->method('getFkCompany')
+            ->willReturn($this->idCompany);
+
+        $this->companyClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getCompanyById')
+            ->willReturn($this->companyTransferMock);
+
+        $this->restApiValidatorInterfaceMock->expects($this->atLeastOnce())
+            ->method('isCompanyAddress')
+            ->willReturn(true);
+
+        $this->restRequestInterfaceMock->expects($this->atLeastOnce())
+            ->method('getRestUser')
+            ->willReturn($this->restUserTransferMock);
+
+        $this->restUserTransferMock->expects($this->atLeastOnce())
+            ->method('getNaturalIdentifier')
+            ->willReturn($this->naturalIdentifier);
+
+        $this->companyUserClientInterfaceMock->expects($this->atLeastOnce())
+            ->method('getActiveCompanyUsersByCustomerReference')
+            ->willReturn($this->companyUserCollectionTransferMock);
+
+        $this->companyUserCollectionTransferMock->expects($this->atLeastOnce())
+            ->method('getCompanyUsers')
+            ->willReturn($this->companyUserTransferMocks);
+
+        $this->restApiValidatorInterfaceMock->expects($this->atLeastOnce())
+            ->method('isCustomerCompanyUser')
+            ->willReturn(false);
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->companyUnitAddressWriter->deleteCompanyUnitAddress(
+                $this->restRequestInterfaceMock
             )
         );
     }

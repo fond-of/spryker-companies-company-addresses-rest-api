@@ -32,5 +32,12 @@ interface RestApiErrorInterface
      *
      * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
      */
+    public function addCompanyUnitAddressForCompanyNotFoundError(RestResponseInterface $restResponse): RestResponseInterface;
+
+    /**
+     * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface $restResponse
+     *
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
+     */
     public function processCompanyUnitAddressErrorOnUpdate(RestResponseInterface $restResponse): RestResponseInterface;
 }

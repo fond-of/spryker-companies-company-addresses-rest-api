@@ -5,6 +5,8 @@ namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Zed;
 use Codeception\Test\Unit;
 use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\CompaniesCompanyAddressesRestApiToZedRequestClientInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
+use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
+use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 
 class CompaniesCompanyAddressesRestApiStubTest extends Unit
 {
@@ -24,6 +26,16 @@ class CompaniesCompanyAddressesRestApiStubTest extends Unit
     protected $companyBusinessUnitTransferMock;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $companyUnitAddressTransferMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
+     */
+    protected $companyUnitAddressResponseTransferMock;
+
+    /**
      * @return void
      */
     protected function _before(): void
@@ -35,6 +47,14 @@ class CompaniesCompanyAddressesRestApiStubTest extends Unit
             ->getMock();
 
         $this->companyBusinessUnitTransferMock = $this->getMockBuilder(CompanyBusinessUnitTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->companyUnitAddressTransferMock = $this->getMockBuilder(CompanyUnitAddressTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->companyUnitAddressResponseTransferMock = $this->getMockBuilder(CompanyUnitAddressResponseTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -56,6 +76,23 @@ class CompaniesCompanyAddressesRestApiStubTest extends Unit
             CompanyBusinessUnitTransfer::class,
             $this->companiesCompanyAddressesRestApiStub->findDefaultCompanyBusinessUnitByCompanyId(
                 $this->companyBusinessUnitTransferMock
+            )
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testDeleteCompanyUnitAddress(): void
+    {
+        $this->zedRequestClientMock->expects($this->atLeastOnce())
+            ->method('call')
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        $this->assertInstanceOf(
+            CompanyUnitAddressResponseTransfer::class,
+            $this->companiesCompanyAddressesRestApiStub->deleteCompanyUnitAddress(
+                $this->companyUnitAddressTransferMock
             )
         );
     }

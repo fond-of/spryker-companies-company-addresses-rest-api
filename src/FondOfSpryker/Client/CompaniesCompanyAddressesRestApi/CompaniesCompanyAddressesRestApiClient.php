@@ -3,6 +3,8 @@
 namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi;
 
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
+use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
+use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -21,5 +23,17 @@ class CompaniesCompanyAddressesRestApiClient extends AbstractClient implements C
         return $this->getFactory()
             ->createZedCompaniesCompanyAddressesRestApiStub()
             ->findDefaultCompanyBusinessUnitByCompanyId($companyBusinessUnitTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     *
+     * @return \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
+     */
+    public function deleteCompanyUnitAddress(CompanyUnitAddressTransfer $companyUnitAddressTransfer): CompanyUnitAddressResponseTransfer
+    {
+        return $this->getFactory()
+            ->createZedCompaniesCompanyAddressesRestApiStub()
+            ->deleteCompanyUnitAddress($companyUnitAddressTransfer);
     }
 }

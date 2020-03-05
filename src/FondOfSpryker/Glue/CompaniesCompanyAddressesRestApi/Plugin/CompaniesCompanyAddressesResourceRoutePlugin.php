@@ -24,7 +24,8 @@ class CompaniesCompanyAddressesResourceRoutePlugin extends AbstractPlugin implem
     ): ResourceRouteCollectionInterface {
         $resourceRouteCollection
             ->addPost(CompaniesCompanyAddressesRestApiConfig::ACTION_COMPANIES_COMPANY_ADDRESSES_POST, true)
-            ->addPatch(CompaniesCompanyAddressesRestApiConfig::ACTION_COMPANIES_COMPANY_ADDRESSES_PATCH, true);
+            ->addPatch(CompaniesCompanyAddressesRestApiConfig::ACTION_COMPANIES_COMPANY_ADDRESSES_PATCH, true)
+            ->addDelete(CompaniesCompanyAddressesRestApiConfig::ACTION_COMPANIES_COMPANY_ADDRESSES_DELETE, true);
 
         return $resourceRouteCollection;
     }

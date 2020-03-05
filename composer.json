@@ -10,6 +10,7 @@
   ],
   "require": {
     "php": ">=7.1",
+    "spryker/event": "^2.0.0",
     "fond-of-spryker/companies-company-users-rest-api": "dev-master",
     "fond-of-spryker/companies-rest-api": "dev-master",
     "fond-of-spryker/country": "dev-master",

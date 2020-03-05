@@ -31,4 +31,11 @@ interface CompanyUnitAddressWriterInterface
         RestRequestInterface $restRequest,
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
     ): RestResponseInterface;
+
+    /**
+     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
+     *
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
+     */
+    public function deleteCompanyUnitAddress(RestRequestInterface $restRequest): RestResponseInterface;
 }

@@ -11,9 +11,12 @@ use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\Company
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapperInterface;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiError;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiErrorInterface;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidator;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidatorInterface;
 use Spryker\Client\Company\CompanyClientInterface;
 use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
 use Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface;
+use Spryker\Client\CompanyUser\CompanyUserClientInterface;
 use Spryker\Glue\Kernel\AbstractFactory;
 
 /**
@@ -31,10 +34,12 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
             $this->getCompanyUnitAddressClient(),
             $this->getCompanyBusinessUnitClient(),
             $this->getCompanyClient(),
+            $this->getCompanyUserClient(),
             $this->getCountryClient(),
             $this->getClient(),
             $this->createCompanyUnitAddressResourceMapper(),
-            $this->createRestApiError()
+            $this->createRestApiError(),
+            $this->createRestApiValidator()
         );
     }
 
@@ -71,11 +76,29 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     /**
      * @throws
      *
+     * @return \Spryker\Client\CompanyUser\CompanyUserClientInterface
+     */
+    public function getCompanyUserClient(): CompanyUserClientInterface
+    {
+        return $this->getProvidedDependency(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COMPANY_USER);
+    }
+
+    /**
+     * @throws
+     *
      * @return \FondOfSpryker\Client\Country\CountryClientInterface
      */
     public function getCountryClient(): CountryClientInterface
     {
         return $this->getProvidedDependency(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COUNTRY);
+    }
+
+    /**
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidatorInterface
+     */
+    public function createRestApiValidator(): RestApiValidatorInterface
+    {
+        return new RestApiValidator($this->createRestApiError());
     }
 
     /**

@@ -98,4 +98,21 @@ class RestApiErrorTest extends Unit
             )
         );
     }
+
+    /**
+     * @return void
+     */
+    public function testAddCompanyUnitAddressForCompanyNotFoundError(): void
+    {
+        $this->restResponseInterfaceMock->expects($this->atLeastOnce())
+            ->method('addError')
+            ->willReturn($this->restResponseInterfaceMock);
+
+        $this->assertInstanceOf(
+            RestResponseInterface::class,
+            $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError(
+                $this->restResponseInterfaceMock
+            )
+        );
+    }
 }

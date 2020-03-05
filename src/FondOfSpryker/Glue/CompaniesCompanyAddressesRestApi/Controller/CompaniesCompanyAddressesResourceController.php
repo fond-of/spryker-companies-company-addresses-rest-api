@@ -41,4 +41,14 @@ class CompaniesCompanyAddressesResourceController extends AbstractController
         return $this->getFactory()->createCompanyUnitAddressWriter()
             ->updateCompanyUnitAddress($restRequest, $restCompanyUnitAddressAttributesTransfer);
     }
+
+    /**
+     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
+     *
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
+     */
+    public function deleteAction(RestRequestInterface $restRequest): RestResponseInterface
+    {
+        return $this->getFactory()->createCompanyUnitAddressWriter()->deleteCompanyUnitAddress($restRequest);
+    }
 }

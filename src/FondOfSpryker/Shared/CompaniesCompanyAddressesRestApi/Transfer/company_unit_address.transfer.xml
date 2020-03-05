@@ -9,5 +9,6 @@
         <property name="country" type="string"/>
         <property name="fax" type="string"/>
         <property name="gln" type="string"/>
+        <property name="isDeleted" type="bool"/>
     </transfer>
 </transfers>

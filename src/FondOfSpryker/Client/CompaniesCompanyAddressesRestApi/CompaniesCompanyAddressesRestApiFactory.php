@@ -10,8 +10,6 @@ use Spryker\Client\Kernel\AbstractFactory;
 class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
 {
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Zed\CompaniesCompanyAddressesRestApiStubInterface
      */
     public function createZedCompaniesCompanyAddressesRestApiStub(): CompaniesCompanyAddressesRestApiStubInterface
@@ -20,8 +18,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\CompaniesCompanyAddressesRestApiToZedRequestClientInterface
      */
     protected function getZedRequestClient(): CompaniesCompanyAddressesRestApiToZedRequestClientInterface

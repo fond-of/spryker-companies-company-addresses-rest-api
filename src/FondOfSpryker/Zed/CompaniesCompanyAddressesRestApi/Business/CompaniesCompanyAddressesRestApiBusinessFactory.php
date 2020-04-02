@@ -19,8 +19,6 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFactory
 {
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyBusinessUnit\CompanyBusinessUnitReaderInterface
      */
     public function createCompanyBusinessUnitReader(): CompanyBusinessUnitReaderInterface
@@ -53,8 +51,6 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Zed\CompanyBusinessUnit\Business\CompanyBusinessUnitFacadeInterface
      */
     protected function getCompanyBusinessUnitFacade(): CompanyBusinessUnitFacadeInterface
@@ -63,8 +59,6 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Zed\CompanyUnitAddress\Business\CompanyUnitAddressFacadeInterface
      */
     protected function getCompanyUnitAddressFacade(): CompanyUnitAddressFacadeInterface
@@ -73,8 +67,6 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventInterface
      */
     protected function getEventFacade(): CompaniesCompanyAddressesRestApiToEventInterface
@@ -83,8 +75,6 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Plugin\CompanyUnitAddressExpanderPluginInterface[]
      */
     protected function getCompanyUnitAddressExpanderPlugins(): array

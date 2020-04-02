@@ -11,8 +11,6 @@ class CompanyUnitAddressMapper implements CompanyUnitAddressMapperInterface
      * @param \Orm\Zed\CompanyUnitAddress\Persistence\SpyCompanyUnitAddress $companyUnitAddressEntity
      * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
      *
-     * @throws
-     *
      * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
      */
     public function mapCompanyUnitAddressEntityToCompanyUnitAddressTransfer(

@@ -135,8 +135,6 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
     }
 
     /**
-     * @throws
-     *
      * @return void
      */
     public function testGetCountryClient(): void

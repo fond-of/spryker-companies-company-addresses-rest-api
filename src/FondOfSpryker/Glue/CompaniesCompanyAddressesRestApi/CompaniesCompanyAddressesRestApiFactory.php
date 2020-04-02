@@ -44,8 +44,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
      */
     public function getCompanyBusinessUnitClient(): CompanyBusinessUnitClientInterface
@@ -54,8 +52,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface
      */
     public function getCompanyUnitAddressClient(): CompanyUnitAddressClientInterface
@@ -64,8 +60,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\Company\CompanyClientInterface
      */
     public function getCompanyClient(): CompanyClientInterface
@@ -74,8 +68,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \Spryker\Client\CompanyUser\CompanyUserClientInterface
      */
     public function getCompanyUserClient(): CompanyUserClientInterface
@@ -84,8 +76,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Client\Country\CountryClientInterface
      */
     public function getCountryClient(): CountryClientInterface

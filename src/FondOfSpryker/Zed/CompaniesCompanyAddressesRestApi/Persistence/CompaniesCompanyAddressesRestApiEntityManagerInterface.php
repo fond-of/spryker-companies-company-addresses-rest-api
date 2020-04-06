@@ -14,7 +14,9 @@ interface CompaniesCompanyAddressesRestApiEntityManagerInterface
     public function findCompanyUnitAddressByIdCompanyUnitAddress(int $idCompanyUnitAddress): CompanyUnitAddressTransfer;
 
     /**
-     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer|int $companyUnitAddressTransfer
+     * @param int $idCompanyUnitAddress
+     *
+     * @return void
      */
     public function deleteCompanyUnitAddressById(int $idCompanyUnitAddress): void;
 }

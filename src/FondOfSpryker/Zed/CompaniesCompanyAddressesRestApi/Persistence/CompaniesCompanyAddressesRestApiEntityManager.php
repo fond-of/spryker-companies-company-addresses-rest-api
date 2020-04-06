@@ -11,7 +11,9 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
 class CompaniesCompanyAddressesRestApiEntityManager extends AbstractEntityManager implements CompaniesCompanyAddressesRestApiEntityManagerInterface
 {
     /**
-     * @inheritDoc
+     * @param int $idCompanyUnitAddress
+     *
+     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
      */
     public function findCompanyUnitAddressByIdCompanyUnitAddress(int $idCompanyUnitAddress): CompanyUnitAddressTransfer
     {
@@ -29,7 +31,9 @@ class CompaniesCompanyAddressesRestApiEntityManager extends AbstractEntityManage
     }
 
     /**
-     * @inheritDoc
+     * @param int $idCompanyUnitAddress
+     *
+     * @return void
      */
     public function deleteCompanyUnitAddressById(int $idCompanyUnitAddress): void
     {

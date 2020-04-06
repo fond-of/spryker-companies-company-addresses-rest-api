@@ -19,8 +19,6 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
 
     /**
      * @return \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\CompaniesCompanyAddressesRestApiToZedRequestClientInterface
-     *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     protected function getZedRequestClient(): CompaniesCompanyAddressesRestApiToZedRequestClientInterface
     {

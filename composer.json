@@ -10,8 +10,13 @@
   ],
   "require": {
     "php": ">=7.1",
-    "spryker/company-business-unit": "^2.0.0",
-    "spryker/company-unit-address": "^1.0.0"
+    "fond-of-spryker/companies-company-users-rest-api": "dev-master",
+    "fond-of-spryker/companies-rest-api": "dev-master",
+    "fond-of-spryker/country": "dev-master",
+    "spryker/company-business-unit": "^1.0.0 || ^2.0.0",
+    "spryker/company-unit-address": "^1.0.0",
+    "spryker/event": "^1.0.0 || ^2.0.0",
+    "spryker/glue-application": "^1.0.0"
   },
   "require-dev": {
     "codeception/codeception": "^2.4",
@@ -30,7 +35,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "FondOfSpryker\\": "tests/FondOfSpryker/"
+      "FondOfSpryker\\": "tests/FondOfSpryker/",
+      "Generated\\": "src/Generated/"
     }
   }
 }

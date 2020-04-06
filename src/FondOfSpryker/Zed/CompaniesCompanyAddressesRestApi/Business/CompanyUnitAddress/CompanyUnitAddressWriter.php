@@ -44,8 +44,6 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     }
 
     /**
-     * @inheritDoc
-     *
      * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
      *
      * @return \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
@@ -89,11 +87,11 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
 
     /**
      * @param string $eventName
-     * @param \Generated\Shared\Transfer\CategoryTransfer $categoryTransfer
+     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
      *
      * @return void
      */
-    protected function triggerEvent(string $eventName, CompanyUnitAddressTransfer $companyUnitAddressTransfer)
+    protected function triggerEvent(string $eventName, CompanyUnitAddressTransfer $companyUnitAddressTransfer): void
     {
         if ($this->eventFacade === null) {
             return;

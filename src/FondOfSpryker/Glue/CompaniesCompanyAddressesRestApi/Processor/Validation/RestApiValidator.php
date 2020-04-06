@@ -24,6 +24,7 @@ class RestApiValidator implements RestApiValidatorInterface
 
     /**
      * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
+     * @param \Generated\Shared\Transfer\CompanyTransfer $companyTransfer
      *
      * @return bool
      */

@@ -25,7 +25,7 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
     /**
      * @param \Generated\Shared\Transfer\CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyBusinessUnitResponseTransfer|null
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
      */
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer

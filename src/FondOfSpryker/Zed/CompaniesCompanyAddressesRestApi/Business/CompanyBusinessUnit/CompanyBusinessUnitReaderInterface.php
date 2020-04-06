@@ -13,6 +13,5 @@ interface CompanyBusinessUnitReaderInterface
      */
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-    ):CompanyBusinessUnitTransfer;
-
+    ): CompanyBusinessUnitTransfer;
 }

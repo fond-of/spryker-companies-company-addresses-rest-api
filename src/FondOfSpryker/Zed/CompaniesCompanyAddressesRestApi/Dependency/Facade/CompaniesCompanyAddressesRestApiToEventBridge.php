@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade;
 
 use Spryker\Shared\Kernel\Transfer\TransferInterface;
+use Spryker\Zed\Event\Business\EventFacadeInterface;
 
 class CompaniesCompanyAddressesRestApiToEventBridge implements CompaniesCompanyAddressesRestApiToEventInterface
 {
@@ -14,7 +15,7 @@ class CompaniesCompanyAddressesRestApiToEventBridge implements CompaniesCompanyA
     /**
      * @param \Spryker\Zed\Event\Business\EventFacadeInterface $eventFacade
      */
-    public function __construct($eventFacade)
+    public function __construct(EventFacadeInterface $eventFacade)
     {
         $this->eventFacade = $eventFacade;
     }
@@ -25,7 +26,7 @@ class CompaniesCompanyAddressesRestApiToEventBridge implements CompaniesCompanyA
      *
      * @return void
      */
-    public function trigger($eventName, TransferInterface $transfer)
+    public function trigger($eventName, TransferInterface $transfer): void
     {
         $this->eventFacade->trigger($eventName, $transfer);
     }

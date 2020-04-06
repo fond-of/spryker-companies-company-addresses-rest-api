@@ -20,7 +20,7 @@ interface CompaniesCompanyAddressesRestApiFacadeInterface
     /**
      * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
+     * @return \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
      */
     public function deleteCompanyUnitAddress(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer

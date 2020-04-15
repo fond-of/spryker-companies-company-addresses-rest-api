@@ -12,7 +12,7 @@
     "php": ">=7.1",
     "fond-of-spryker/companies-company-users-rest-api": "dev-master",
     "fond-of-spryker/companies-rest-api": "dev-master",
-    "fond-of-spryker/country": "dev-master",
+    "fond-of-spryker/country": "dev-spryker_upgrade",
     "spryker/company-business-unit": "^1.0.0 || ^2.0.0",
     "spryker/company-unit-address": "^1.0.0",
     "spryker/event": "^1.0.0 || ^2.0.0",

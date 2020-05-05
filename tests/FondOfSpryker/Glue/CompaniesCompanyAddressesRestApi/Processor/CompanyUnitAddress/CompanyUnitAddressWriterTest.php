@@ -96,7 +96,7 @@ class CompanyUnitAddressWriterTest extends Unit
     protected $restResourceInterfaceMock;
 
     /**
-     * @var int
+     * @var string
      */
     protected $id;
 
@@ -235,7 +235,7 @@ class CompanyUnitAddressWriterTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->id = 1;
+        $this->id = 'e3d274b4-8ee1-11ea-bc55-0242ac130003';
 
         $this->country = 'country';
 

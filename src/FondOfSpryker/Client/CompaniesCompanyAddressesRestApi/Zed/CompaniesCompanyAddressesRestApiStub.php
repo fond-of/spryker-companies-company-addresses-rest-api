@@ -30,6 +30,7 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): ?CompanyBusinessUnitTransfer {
+        /** @var \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null $companyBusinessUnitTransfer */
         $companyBusinessUnitTransfer = $this->zedRequestClient->call(
             '/companies-company-addresses-rest-api/gateway/find-default-company-business-unit-by-company-id',
             $companyBusinessUnitTransfer
@@ -46,6 +47,7 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
     public function deleteCompanyUnitAddress(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressResponseTransfer {
+        /** @var \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer $companyUnitAddressResponseTransfer */
         $companyUnitAddressResponseTransfer = $this->zedRequestClient->call(
             '/companies-company-addresses-rest-api/gateway/delete-company-unit-address',
             $companyUnitAddressTransfer

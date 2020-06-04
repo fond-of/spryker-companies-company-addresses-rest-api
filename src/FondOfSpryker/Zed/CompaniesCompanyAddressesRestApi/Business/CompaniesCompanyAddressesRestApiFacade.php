@@ -34,7 +34,6 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
     public function deleteCompanyUnitAddress(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressResponseTransfer {
-
         return $this->getFactory()
             ->createCompanyUnitAddressWriter()
             ->deleteCompanyUnitAddress($companyUnitAddressTransfer);
@@ -48,7 +47,6 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
     public function getCompanyUnitAddressById(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressTransfer {
-
         return $this->getFactory()
             ->createCompanyUnitAddressReader()
             ->getCompanyUnitAddressById($companyUnitAddressTransfer);

@@ -20,7 +20,6 @@ class GatewayController extends AbstractGatewayController
     public function findDefaultCompanyBusinessUnitByCompanyIdAction(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): CompanyBusinessUnitTransfer {
-
         return $this->getFacade()->findDefaultCompanyBusinessUnitByCompanyIdAction($companyBusinessUnitTransfer);
     }
 

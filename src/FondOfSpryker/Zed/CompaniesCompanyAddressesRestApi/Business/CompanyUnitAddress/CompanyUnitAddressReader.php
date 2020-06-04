@@ -28,7 +28,6 @@ class CompanyUnitAddressReader implements CompanyUnitAddressReaderInterface
     public function getCompanyUnitAddressById(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressTransfer {
-
         $companyUnitAddressTransfer->requireIdCompanyUnitAddress();
 
         return $this->companyUnitAddressFacade

@@ -31,7 +31,6 @@ class RestApiError implements RestApiErrorInterface
      */
     public function addCompanyUnitAddressUuidMissingError(RestResponseInterface $restResponse): RestResponseInterface
     {
-
         $restErrorTransfer = (new RestErrorMessageTransfer())
             ->setCode(CompaniesCompanyAddressesRestApiConfig::RESPONSE_CODE_BUSINESS_UNIT_UUID_MISSING)
             ->setStatus(Response::HTTP_BAD_REQUEST)

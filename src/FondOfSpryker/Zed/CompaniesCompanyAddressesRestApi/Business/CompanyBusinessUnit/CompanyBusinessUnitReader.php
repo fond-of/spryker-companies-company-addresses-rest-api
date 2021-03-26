@@ -13,8 +13,6 @@ class CompanyBusinessUnitReader implements CompanyBusinessUnitReaderInterface
     protected $companyBusinessUnitFacade;
 
     /**
-     * CompanyBusinessUnitReader constructor.
-     *
      * @param \Spryker\Zed\CompanyBusinessUnit\Business\CompanyBusinessUnitFacadeInterface $companyBusinessUnitFacade
      */
     public function __construct(CompanyBusinessUnitFacadeInterface $companyBusinessUnitFacade)

@@ -51,19 +51,14 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     public function deleteCompanyUnitAddress(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressResponseTransfer {
-
         return $this->getTransactionHandler()->handleTransaction(function () use ($companyUnitAddressTransfer) {
 
-            if ($companyUnitAddressTransfer === null || $companyUnitAddressTransfer->getIdCompanyUnitAddress() === null) {
+            if ($companyUnitAddressTransfer->getIdCompanyUnitAddress() === null) {
                 return (new CompanyUnitAddressResponseTransfer())->setIsSuccessful(false);
             }
 
             $companyUnitAddressTransfer = $this->companiesCompanyAddressesRestApiEntityManager
                 ->findCompanyUnitAddressByIdCompanyUnitAddress($companyUnitAddressTransfer->getIdCompanyUnitAddress());
-
-            if ($companyUnitAddressTransfer === null) {
-                return (new CompanyUnitAddressResponseTransfer())->setIsSuccessful(false);
-            }
 
             $companyUnitAddressTransfer = $this->executeExpanderPlugins($companyUnitAddressTransfer);
 
@@ -77,11 +72,9 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
                 $companyUnitAddressTransfer
             );
 
-            $companyUnitAddressResponseTransfer = (new CompanyUnitAddressResponseTransfer())
+            return (new CompanyUnitAddressResponseTransfer())
                 ->setCompanyUnitAddressTransfer($companyUnitAddressTransfer)
                 ->setIsSuccessful(true);
-
-            return $companyUnitAddressResponseTransfer;
         });
     }
 

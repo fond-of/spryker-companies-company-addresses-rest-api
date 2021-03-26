@@ -19,7 +19,6 @@ class CompanyBusinessUnitCompanyUnitAddressExpanderPlugin extends AbstractPlugin
     public function expand(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressTransfer {
-
         $companyUnitAddressTransfer = $this->getFacade()
             ->getCompanyUnitAddressById($companyUnitAddressTransfer);
 

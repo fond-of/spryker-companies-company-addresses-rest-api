@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpryker\Shared\CompaniesCompanyAddressesRestApiConfig;
+namespace FondOfSpryker\Shared\CompaniesCompanyAddressesRestApi;
 
 class CompaniesCompanyAddressesRestApiConfig
 {

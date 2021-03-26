@@ -47,7 +47,6 @@ class RestApiValidator implements RestApiValidatorInterface
         RestRequestInterface $restRequest,
         CompanyUserCollectionTransfer $companyUserCollectionTransfer
     ): bool {
-
         $companyResource = $restRequest->findParentResourceByType(CompaniesRestApiConfig::RESOURCE_COMPANIES) ?? $restRequest->getResource();
 
         foreach ($companyUserCollectionTransfer->getCompanyUsers() as $companyUser) {

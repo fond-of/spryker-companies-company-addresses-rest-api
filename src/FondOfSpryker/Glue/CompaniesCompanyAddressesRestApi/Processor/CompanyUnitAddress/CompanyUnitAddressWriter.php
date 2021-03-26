@@ -70,7 +70,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
     protected $restApiError;
 
     /**
-     * @var \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidator
+     * @var \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiValidatorInterface
      */
     protected $restApiValidator;
 
@@ -125,7 +125,6 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         RestRequestInterface $restRequest,
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
     ): RestResponseInterface {
-
         $restResponse = $this->restResourceBuilder->createRestResponse();
 
         $companyTransfer = (new CompanyTransfer())->setUuid($this->findCompanyIdentifier($restRequest));
@@ -215,15 +214,14 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient
             ->findCompanyBusinessUnitAddressByUuid($companyUnitAddressTransfer);
 
-        if ($companyUnitAddressResponseTransfer === null
-            || $companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer() === null) {
+        if ($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer() === null) {
             return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
         }
 
         $companyTransfer = (new CompanyTransfer())->setIdCompany($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer()->getFkCompany());
         $companyTransfer = $this->companyClient->getCompanyById($companyTransfer);
 
-        if ($companyTransfer === null || !$this->restApiValidator->isCompanyAddress($restRequest, $companyTransfer)) {
+        if (!$this->restApiValidator->isCompanyAddress($restRequest, $companyTransfer)) {
             return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
         }
 
@@ -233,7 +231,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         $companyUserCollectionTransfer = $this->companyUserClient
             ->getActiveCompanyUsersByCustomerReference($customerTransfer);
 
-        if ($companyUserCollectionTransfer === null || $companyUserCollectionTransfer->getCompanyUsers()->count() === 0) {
+        if ($companyUserCollectionTransfer->getCompanyUsers()->count() === 0) {
             return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
         }
 
@@ -289,19 +287,17 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
                 $companyUnitAddressTransfer
             );
 
-        $restResource = $this->restResourceBuilder->createRestResource(
+        return $this->restResourceBuilder->createRestResource(
             CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES_COMPANY_ADDRESSES,
             $restCompanyUnitAddressResponseTransferAddressAttributesTransfer->getUuid(),
             $restCompanyUnitAddressResponseTransferAddressAttributesTransfer
         );
-
-        return $restResource;
     }
 
     /**
      * @param \Generated\Shared\Transfer\CompanyTransfer $companyTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer
      */
     protected function findDefaultCompanyBusinessUnitByCompanyId(CompanyTransfer $companyTransfer): CompanyBusinessUnitTransfer
     {

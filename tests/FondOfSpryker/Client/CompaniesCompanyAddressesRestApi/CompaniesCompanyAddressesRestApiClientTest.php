@@ -5,8 +5,6 @@ namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi;
 use Codeception\Test\Unit;
 use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Zed\CompaniesCompanyAddressesRestApiStubInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
 

@@ -23,7 +23,6 @@ class CompaniesCompanyAddressesRestApiToEventFacadeBridgeTest extends Unit
      */
     protected $bridge;
 
-
     /**
      * @return void
      */

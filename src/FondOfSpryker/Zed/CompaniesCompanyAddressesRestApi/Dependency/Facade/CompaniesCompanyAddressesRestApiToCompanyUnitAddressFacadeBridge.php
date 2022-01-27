@@ -41,6 +41,4 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge implement
     {
         $this->companyUnitAddressFacade->delete($companyUnitAddressTransfer);
     }
-
-
 }

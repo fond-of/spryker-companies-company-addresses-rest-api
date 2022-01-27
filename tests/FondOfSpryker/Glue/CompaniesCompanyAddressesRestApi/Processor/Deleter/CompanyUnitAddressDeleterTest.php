@@ -98,7 +98,8 @@ class CompanyUnitAddressDeleterTest extends Unit
     /**
      * @return void
      */
-    public function testDeleteByRestRequest(): void {
+    public function testDeleteByRestRequest(): void
+    {
         $idCustomer = 1;
 
         $this->restCompaniesCompanyAddressDeleteRequestMapperMock->expects(static::atLeastOnce())
@@ -138,7 +139,8 @@ class CompanyUnitAddressDeleterTest extends Unit
     /**
      * @return void
      */
-    public function testDeleteByRestRequestWithoutCustomerId(): void {
+    public function testDeleteByRestRequestWithoutCustomerId(): void
+    {
         $this->restCompaniesCompanyAddressDeleteRequestMapperMock->expects(static::atLeastOnce())
             ->method('fromRestRequest')
             ->with($this->restRequestMock)
@@ -170,7 +172,8 @@ class CompanyUnitAddressDeleterTest extends Unit
     /**
      * @return void
      */
-    public function testDeleteByRestRequestWithError(): void {
+    public function testDeleteByRestRequestWithError(): void
+    {
         $idCustomer = 1;
 
         $this->restCompaniesCompanyAddressDeleteRequestMapperMock->expects(static::atLeastOnce())

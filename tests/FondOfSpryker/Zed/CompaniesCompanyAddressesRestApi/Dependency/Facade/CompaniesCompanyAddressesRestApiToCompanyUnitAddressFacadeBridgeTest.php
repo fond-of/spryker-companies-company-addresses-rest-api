@@ -46,7 +46,8 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridgeTest exten
     /**
      * @return void
      */
-    public function testDelete(): void {
+    public function testDelete(): void
+    {
         $this->facadeMock->expects(static::atLeastOnce())
             ->method('delete')
             ->with($this->companyUnitAddressTransferMock);
@@ -57,7 +58,8 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridgeTest exten
     /**
      * @return void
      */
-    public function testGetCompanyUnitAddressById(): void {
+    public function testGetCompanyUnitAddressById(): void
+    {
         $this->facadeMock->expects(static::atLeastOnce())
             ->method('getCompanyUnitAddressById')
             ->with($this->companyUnitAddressTransferMock)

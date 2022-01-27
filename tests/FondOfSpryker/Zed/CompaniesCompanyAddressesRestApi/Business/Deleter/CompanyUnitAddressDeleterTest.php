@@ -50,6 +50,8 @@ class CompanyUnitAddressDeleterTest extends Unit
 
     /**
      * @Override
+     *
+     * @return void
      */
     protected function _before(): void
     {
@@ -140,7 +142,7 @@ class CompanyUnitAddressDeleterTest extends Unit
             ->method('getCompanyUnitAddressById')
             ->with(
                 static::callback(
-                    static function(CompanyUnitAddressTransfer $companyUnitAddressTransfer) use ($idCompanyUnitAddress) {
+                    static function (CompanyUnitAddressTransfer $companyUnitAddressTransfer) use ($idCompanyUnitAddress) {
                         return $idCompanyUnitAddress === $companyUnitAddressTransfer->getIdCompanyUnitAddress();
                     }
                 )

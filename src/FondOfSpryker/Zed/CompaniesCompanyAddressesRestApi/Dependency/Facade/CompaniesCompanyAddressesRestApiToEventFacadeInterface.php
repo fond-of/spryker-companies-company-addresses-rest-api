@@ -4,7 +4,7 @@ namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade;
 
 use Spryker\Shared\Kernel\Transfer\TransferInterface;
 
-interface CompaniesCompanyAddressesRestApiToEventInterface
+interface CompaniesCompanyAddressesRestApiToEventFacadeInterface
 {
     /**
      * @param string $eventName
@@ -12,5 +12,5 @@ interface CompaniesCompanyAddressesRestApiToEventInterface
      *
      * @return void
      */
-    public function trigger($eventName, TransferInterface $transfer): void;
+    public function trigger(string $eventName, TransferInterface $transfer): void;
 }

@@ -4,8 +4,8 @@ namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Zed;
 
 use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\CompaniesCompanyAddressesRestApiToZedRequestClientInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
 
 class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesRestApiStubInterface
 {
@@ -40,19 +40,19 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
     }
 
     /**
-     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer
      */
-    public function deleteCompanyUnitAddress(
-        CompanyUnitAddressTransfer $companyUnitAddressTransfer
-    ): CompanyUnitAddressResponseTransfer {
-        /** @var \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer $companyUnitAddressResponseTransfer */
-        $companyUnitAddressResponseTransfer = $this->zedRequestClient->call(
-            '/companies-company-addresses-rest-api/gateway/delete-company-unit-address',
-            $companyUnitAddressTransfer
+    public function deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
+        RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
+    ): RestCompaniesCompanyAddressesDeleteResponseTransfer {
+        /** @var \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer $restCompaniesCompanyAddressesDeleteResponseTransfer */
+        $restCompaniesCompanyAddressesDeleteResponseTransfer = $this->zedRequestClient->call(
+            '/companies-company-addresses-rest-api/gateway/delete-company-unit-address-by-rest-companies-company-addresses-delete-request',
+            $restCompaniesCompanyAddressesDeleteRequestTransfer
         );
 
-        return $companyUnitAddressResponseTransfer;
+        return $restCompaniesCompanyAddressesDeleteResponseTransfer;
     }
 }

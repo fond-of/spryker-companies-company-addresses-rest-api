@@ -49,6 +49,6 @@ class CompaniesCompanyAddressesResourceController extends AbstractController
      */
     public function deleteAction(RestRequestInterface $restRequest): RestResponseInterface
     {
-        return $this->getFactory()->createCompanyUnitAddressWriter()->deleteCompanyUnitAddress($restRequest);
+        return $this->getFactory()->createCompanyUnitAddressDeleter()->deleteByRestRequest($restRequest);
     }
 }

@@ -3,8 +3,8 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Communication\Controller;
 
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
 /**
@@ -20,17 +20,19 @@ class GatewayController extends AbstractGatewayController
     public function findDefaultCompanyBusinessUnitByCompanyIdAction(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): CompanyBusinessUnitTransfer {
-        return $this->getFacade()->findDefaultCompanyBusinessUnitByCompanyIdAction($companyBusinessUnitTransfer);
+        return $this->getFacade()->findDefaultCompanyBusinessUnitByCompanyId($companyBusinessUnitTransfer);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer
      */
-    public function deleteCompanyUnitAddressAction(
-        CompanyUnitAddressTransfer $companyUnitAddressTransfer
-    ): CompanyUnitAddressResponseTransfer {
-        return $this->getFacade()->deleteCompanyUnitAddress($companyUnitAddressTransfer);
+    public function deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequestAction(
+        RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
+    ): RestCompaniesCompanyAddressesDeleteResponseTransfer {
+        return $this->getFacade()->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
+            $restCompaniesCompanyAddressesDeleteRequestTransfer
+        );
     }
 }

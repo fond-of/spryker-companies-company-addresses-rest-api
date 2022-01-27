@@ -3,8 +3,8 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
 
 interface CompaniesCompanyAddressesRestApiFacadeInterface
 {
@@ -13,25 +13,16 @@ interface CompaniesCompanyAddressesRestApiFacadeInterface
      *
      * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer
      */
-    public function findDefaultCompanyBusinessUnitByCompanyIdAction(
+    public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): CompanyBusinessUnitTransfer;
 
     /**
-     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer
      */
-    public function deleteCompanyUnitAddress(
-        CompanyUnitAddressTransfer $companyUnitAddressTransfer
-    ): CompanyUnitAddressResponseTransfer;
-
-    /**
-     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer
-     */
-    public function getCompanyUnitAddressById(
-        CompanyUnitAddressTransfer $companyUnitAddressTransfer
-    ): CompanyUnitAddressTransfer;
+    public function deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
+        RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
+    ): RestCompaniesCompanyAddressesDeleteResponseTransfer;
 }

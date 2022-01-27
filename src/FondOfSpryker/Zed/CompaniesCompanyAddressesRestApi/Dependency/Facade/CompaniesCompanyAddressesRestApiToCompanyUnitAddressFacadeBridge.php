@@ -1,11 +1,12 @@
 <?php
 
-namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyUnitAddress;
+namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade;
 
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Spryker\Zed\CompanyUnitAddress\Business\CompanyUnitAddressFacadeInterface;
 
-class CompanyUnitAddressReader implements CompanyUnitAddressReaderInterface
+class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge implements
+    CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeInterface
 {
     /**
      * @var \Spryker\Zed\CompanyUnitAddress\Business\CompanyUnitAddressFacadeInterface
@@ -28,9 +29,18 @@ class CompanyUnitAddressReader implements CompanyUnitAddressReaderInterface
     public function getCompanyUnitAddressById(
         CompanyUnitAddressTransfer $companyUnitAddressTransfer
     ): CompanyUnitAddressTransfer {
-        $companyUnitAddressTransfer->requireIdCompanyUnitAddress();
-
-        return $this->companyUnitAddressFacade
-            ->getCompanyUnitAddressById($companyUnitAddressTransfer);
+        return $this->companyUnitAddressFacade->getCompanyUnitAddressById($companyUnitAddressTransfer);
     }
+
+    /**
+     * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
+     *
+     * @return void
+     */
+    public function delete(CompanyUnitAddressTransfer $companyUnitAddressTransfer): void
+    {
+        $this->companyUnitAddressFacade->delete($companyUnitAddressTransfer);
+    }
+
+
 }

@@ -3,23 +3,20 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
 use Codeception\Test\Unit;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyBusinessUnit\CompanyBusinessUnitReader;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyBusinessUnit\CompanyBusinessUnitReaderInterface;
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyUnitAddress\CompanyUnitAddressReader;
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyUnitAddress\CompanyUnitAddressWriter;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleter;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiDependencyProvider;
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventInterface;
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiEntityManager;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeInterface;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventFacadeInterface;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiRepository;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiRepositoryInterface;
 use Spryker\Zed\CompanyBusinessUnit\Business\CompanyBusinessUnitFacadeInterface;
 use Spryker\Zed\CompanyUnitAddress\Business\CompanyUnitAddressFacadeInterface;
 use Spryker\Zed\Kernel\Container;
 
 class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
 {
-    /**
-     * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiBusinessFactory
-     */
-    protected $companiesCompanyAddressesRestApiBusinessFactoryMock;
-
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\Kernel\Container
      */
@@ -31,24 +28,23 @@ class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
     protected $companyBusinessUnitFacadeInterfaceMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\CompanyUnitAddress\Business\CompanyUnitAddressFacadeInterface
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeInterface
      */
-    protected $companyUnitAddressFacadeInterfaceMock;
+    protected $companyUnitAddressFacadeMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiEntityManager
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventFacadeInterface
      */
-    protected $companiesCompanyAddressesRestApiEntityManagerMock;
+    protected $eventFacadeMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventInterface
+     * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiBusinessFactory
      */
-    protected $companiesCompanyAddressesRestApiToEventInterfaceMock;
-
+    protected $factory;
     /**
-     * @var array
+     * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence\CompaniesCompanyAddressesRestApiRepository|\PHPUnit\Framework\MockObject\MockObject
      */
-    protected $companyUnitAddressExpanderPlugins;
+    protected $repositoryMock;
 
     /**
      * @return void
@@ -65,23 +61,21 @@ class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUnitAddressFacadeInterfaceMock = $this->getMockBuilder(CompanyUnitAddressFacadeInterface::class)
+        $this->companyUnitAddressFacadeMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companiesCompanyAddressesRestApiEntityManagerMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiEntityManager::class)
+        $this->eventFacadeMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiToEventFacadeInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companiesCompanyAddressesRestApiToEventInterfaceMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiToEventInterface::class)
+        $this->repositoryMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiRepository::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUnitAddressExpanderPlugins = [];
-
-        $this->companiesCompanyAddressesRestApiBusinessFactoryMock = new CompaniesCompanyAddressesRestApiBusinessFactory();
-        $this->companiesCompanyAddressesRestApiBusinessFactoryMock->setEntityManager($this->companiesCompanyAddressesRestApiEntityManagerMock);
-        $this->companiesCompanyAddressesRestApiBusinessFactoryMock->setContainer($this->containerMock);
+        $this->factory = new CompaniesCompanyAddressesRestApiBusinessFactory();
+        $this->factory->setContainer($this->containerMock);
+        $this->factory->setRepository($this->repositoryMock);
     }
 
     /**
@@ -89,63 +83,47 @@ class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
      */
     public function testCreateCompanyBusinessUnitReader(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(static::atLeastOnce())
             ->method('has')
             ->willReturn(true);
 
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(static::atLeastOnce())
             ->method('get')
             ->with(CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_BUSINESS_UNIT)
             ->willReturn($this->companyBusinessUnitFacadeInterfaceMock);
 
-        $this->assertInstanceOf(
-            CompanyBusinessUnitReaderInterface::class,
-            $this->companiesCompanyAddressesRestApiBusinessFactoryMock->createCompanyBusinessUnitReader()
+        static::assertInstanceOf(
+            CompanyBusinessUnitReader::class,
+            $this->factory->createCompanyBusinessUnitReader()
         );
     }
 
     /**
      * @return void
      */
-    public function testCreateCompanyUnitAddressReader(): void
+    public function testCreateCompanyUnitAddressDeleter(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(static::atLeastOnce())
             ->method('has')
+            ->withConsecutive(
+                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_EVENT],
+                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS]
+            )
             ->willReturn(true);
 
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->with(CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS)
-            ->willReturn($this->companyUnitAddressFacadeInterfaceMock);
-
-        $this->assertInstanceOf(
-            CompanyUnitAddressReader::class,
-            $this->companiesCompanyAddressesRestApiBusinessFactoryMock->createCompanyUnitAddressReader()
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testCreateCompanyUnitAddressWriter(): void
-    {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
+        $this->containerMock->expects(static::atLeastOnce())
             ->method('get')
             ->withConsecutive(
                 [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_EVENT],
-                [CompaniesCompanyAddressesRestApiDependencyProvider::PLUGINS_COMPANY_UNIT_ADDRESS_EXPANDER]
+                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS]
             )->willReturnOnConsecutiveCalls(
-                $this->companiesCompanyAddressesRestApiToEventInterfaceMock,
-                $this->companyUnitAddressExpanderPlugins
+                $this->eventFacadeMock,
+                $this->companyUnitAddressFacadeMock
             );
 
         $this->assertInstanceOf(
-            CompanyUnitAddressWriter::class,
-            $this->companiesCompanyAddressesRestApiBusinessFactoryMock->createCompanyUnitAddressWriter()
+            CompanyUnitAddressDeleter::class,
+            $this->factory->createCompanyUnitAddressDeleter()
         );
     }
 }

@@ -16,7 +16,6 @@ use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\CompanyTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Generated\Shared\Transfer\CountryTransfer;
-use Generated\Shared\Transfer\CustomerTransfer;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 use Spryker\Client\Company\CompanyClientInterface;
 use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
@@ -195,55 +194,6 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         return $restResponse->addResource(
             $this->getCompanyUnitAddressResource($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer())
         );
-    }
-
-    /**
-     * @param \Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface $restRequest
-     *
-     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface
-     */
-    public function deleteCompanyUnitAddress(RestRequestInterface $restRequest): RestResponseInterface
-    {
-        $restResponse = $this->restResourceBuilder->createRestResponse();
-
-        if (!$restRequest->getResource()->getId()) {
-            return $this->restApiError->addCompanyUnitAddressUuidMissingError($restResponse);
-        }
-
-        $companyUnitAddressTransfer = (new CompanyUnitAddressTransfer())->setUuid($restRequest->getResource()->getId());
-        $companyUnitAddressResponseTransfer = $this->companyUnitAddressClient
-            ->findCompanyBusinessUnitAddressByUuid($companyUnitAddressTransfer);
-
-        if ($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer() === null) {
-            return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
-        }
-
-        $companyTransfer = (new CompanyTransfer())->setIdCompany($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer()->getFkCompany());
-        $companyTransfer = $this->companyClient->getCompanyById($companyTransfer);
-
-        if (!$this->restApiValidator->isCompanyAddress($restRequest, $companyTransfer)) {
-            return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
-        }
-
-        $customerTransfer = (new CustomerTransfer())->setCustomerReference(
-            $restRequest->getRestUser()->getNaturalIdentifier()
-        );
-        $companyUserCollectionTransfer = $this->companyUserClient
-            ->getActiveCompanyUsersByCustomerReference($customerTransfer);
-
-        if ($companyUserCollectionTransfer->getCompanyUsers()->count() === 0) {
-            return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
-        }
-
-        if (!$this->restApiValidator->isCustomerCompanyUser($restRequest, $companyUserCollectionTransfer)) {
-            return $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError($restResponse);
-        }
-
-        $this->companiesCompanyAddressesRestApiClient->deleteCompanyUnitAddress(
-            $companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer()
-        );
-
-        return $restResponse;
     }
 
     /**

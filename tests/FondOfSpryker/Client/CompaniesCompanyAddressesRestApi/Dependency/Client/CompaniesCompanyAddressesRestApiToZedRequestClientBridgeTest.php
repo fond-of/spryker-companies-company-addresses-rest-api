@@ -39,7 +39,7 @@ class CompaniesCompanyAddressesRestApiToZedRequestClientBridgeTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->url = "url";
+        $this->url = 'url';
 
         $this->transferInterfaceMock = $this->getMockBuilder(TransferInterface::class)
             ->disableOriginalConstructor()

@@ -22,4 +22,18 @@
         <property name="isDeleted" type="bool"/>
     </transfer>
 
+    <transfer name="RestCompaniesCompanyAddressesDeleteRequest">
+        <property name="idCustomer" type="int"/>
+        <property name="companyUuid" type="string"/>
+        <property name="companyUnitAddressUuid" type="string"/>
+    </transfer>
+
+    <transfer name="RestCompaniesCompanyAddressesDeleteResponse">
+        <property name="isSuccessful" type="bool"/>
+        <property name="messages" type="Message[]"  singular="message"/>
+    </transfer>
+
+    <transfer name="Message">
+        <property name="value" type="string"/>
+    </transfer>
 </transfers>

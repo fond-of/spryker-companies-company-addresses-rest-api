@@ -25,4 +25,24 @@ class CompaniesCompanyAddressesRestApiConfig extends AbstractBundleConfig
     public const RESPONSE_MESSAGE_FAILED_UPDATING_BUSINESS_UNIT_ADDRESS = 'Business Unit Address could not be updated.';
     public const RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_NOT_FOUND = 'Business Unit Address could not be found.';
     public const RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_FOR_COMPANY_NOT_FOUND = 'Business Unit Address for the Company not found';
+
+    /**
+     * @var string
+     */
+    public const RESPONSE_CODE_USER_IS_NOT_SPECIFIED = '1001';
+
+    /**
+     * @var string
+     */
+    public const ERROR_MESSAGE_USER_IS_NOT_SPECIFIED = 'Authorization header is required';
+
+    /**
+     * @var string
+     */
+    public const RESPONSE_CODE_COULD_NOT_DELETED = '1002';
+
+    /**
+     * @var string
+     */
+    public const ERROR_MESSAGE_COULD_NOT_DELETED = 'Company business unit address could not be deleted.';
 }

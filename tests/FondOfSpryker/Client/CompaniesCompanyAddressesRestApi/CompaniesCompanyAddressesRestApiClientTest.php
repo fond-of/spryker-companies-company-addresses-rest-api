@@ -5,8 +5,8 @@ namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi;
 use Codeception\Test\Unit;
 use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Zed\CompaniesCompanyAddressesRestApiStubInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
-use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
 
 class CompaniesCompanyAddressesRestApiClientTest extends Unit
 {
@@ -18,7 +18,7 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiFactory
      */
-    protected $companiesCompanyAddressesRestApiFactoryMock;
+    protected $factoryMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CompanyBusinessUnitTransfer
@@ -28,17 +28,17 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Zed\CompaniesCompanyAddressesRestApiStubInterface
      */
-    protected $companiesCompanyAddressesRestApiStubInterfaceMock;
+    protected $stubMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CompanyUnitAddressTransfer
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer
      */
-    protected $companyUnitAddressTransferMock;
+    protected $restCompaniesCompanyAddressesDeleteRequestTransferMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer
      */
-    protected $companyUnitAddressResponseTransferMock;
+    protected $restCompaniesCompanyAddressesDeleteResponseTransferMock;
 
     /**
      * @return void
@@ -47,7 +47,7 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
     {
         parent::_before();
 
-        $this->companiesCompanyAddressesRestApiFactoryMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiFactory::class)
+        $this->factoryMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiFactory::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -55,20 +55,20 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companiesCompanyAddressesRestApiStubInterfaceMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiStubInterface::class)
+        $this->stubMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiStubInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUnitAddressTransferMock = $this->getMockBuilder(CompanyUnitAddressTransfer::class)
+        $this->restCompaniesCompanyAddressesDeleteRequestTransferMock = $this->getMockBuilder(RestCompaniesCompanyAddressesDeleteRequestTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUnitAddressResponseTransferMock = $this->getMockBuilder(CompanyUnitAddressResponseTransfer::class)
+        $this->restCompaniesCompanyAddressesDeleteResponseTransferMock = $this->getMockBuilder(RestCompaniesCompanyAddressesDeleteResponseTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $this->companiesCompanyAddressesRestApiClient = new CompaniesCompanyAddressesRestApiClient();
-        $this->companiesCompanyAddressesRestApiClient->setFactory($this->companiesCompanyAddressesRestApiFactoryMock);
+        $this->companiesCompanyAddressesRestApiClient->setFactory($this->factoryMock);
     }
 
     /**
@@ -76,16 +76,16 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
      */
     public function testFindDefaultCompanyBusinessUnitByCompanyId(): void
     {
-        $this->companiesCompanyAddressesRestApiFactoryMock->expects($this->atLeastOnce())
+        $this->factoryMock->expects(static::atLeastOnce())
             ->method('createZedCompaniesCompanyAddressesRestApiStub')
-            ->willReturn($this->companiesCompanyAddressesRestApiStubInterfaceMock);
+            ->willReturn($this->stubMock);
 
-        $this->companiesCompanyAddressesRestApiStubInterfaceMock->expects($this->atLeastOnce())
+        $this->stubMock->expects(static::atLeastOnce())
             ->method('findDefaultCompanyBusinessUnitByCompanyId')
             ->willReturn($this->companyBusinessUnitTransferMock);
 
-        $this->assertInstanceOf(
-            CompanyBusinessUnitTransfer::class,
+        static::assertEquals(
+            $this->companyBusinessUnitTransferMock,
             $this->companiesCompanyAddressesRestApiClient->findDefaultCompanyBusinessUnitByCompanyId(
                 $this->companyBusinessUnitTransferMock
             )
@@ -95,20 +95,21 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
     /**
      * @return void
      */
-    public function testDeleteCompanyUnitAddress(): void
+    public function testDeleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(): void
     {
-        $this->companiesCompanyAddressesRestApiFactoryMock->expects($this->atLeastOnce())
+        $this->factoryMock->expects(static::atLeastOnce())
             ->method('createZedCompaniesCompanyAddressesRestApiStub')
-            ->willReturn($this->companiesCompanyAddressesRestApiStubInterfaceMock);
+            ->willReturn($this->stubMock);
 
-        $this->companiesCompanyAddressesRestApiStubInterfaceMock->expects($this->atLeastOnce())
-            ->method('deleteCompanyUnitAddress')
-            ->willReturn($this->companyUnitAddressResponseTransferMock);
+        $this->stubMock->expects(static::atLeastOnce())
+            ->method('deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest')
+            ->with($this->restCompaniesCompanyAddressesDeleteRequestTransferMock)
+            ->willReturn($this->restCompaniesCompanyAddressesDeleteResponseTransferMock);
 
-        $this->assertInstanceOf(
-            CompanyUnitAddressResponseTransfer::class,
-            $this->companiesCompanyAddressesRestApiClient->deleteCompanyUnitAddress(
-                $this->companyUnitAddressTransferMock
+        static::assertEquals(
+            $this->restCompaniesCompanyAddressesDeleteResponseTransferMock,
+            $this->companiesCompanyAddressesRestApiClient->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
+                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock
             )
         );
     }

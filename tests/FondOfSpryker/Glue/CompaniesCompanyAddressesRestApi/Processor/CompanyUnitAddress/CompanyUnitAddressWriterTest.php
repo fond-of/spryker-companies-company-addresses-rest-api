@@ -485,7 +485,7 @@ class CompanyUnitAddressWriterTest extends Unit
             ->willReturn($this->companyUnitAddressTransferMock);
 
         $this->restCompanyUnitAddressAttributesTransferMock->expects($this->atLeastOnce())
-            ->method('modifiedToArray')
+            ->method('toArray')
             ->willReturn([]);
 
         $this->restCompanyUnitAddressAttributesTransferMock->expects($this->atLeastOnce())
@@ -643,7 +643,7 @@ class CompanyUnitAddressWriterTest extends Unit
             ->willReturn($this->companyUnitAddressTransferMock);
 
         $this->restCompanyUnitAddressAttributesTransferMock->expects($this->atLeastOnce())
-            ->method('modifiedToArray')
+            ->method('toArray')
             ->willReturn([]);
 
         $this->restCompanyUnitAddressAttributesTransferMock->expects($this->atLeastOnce())

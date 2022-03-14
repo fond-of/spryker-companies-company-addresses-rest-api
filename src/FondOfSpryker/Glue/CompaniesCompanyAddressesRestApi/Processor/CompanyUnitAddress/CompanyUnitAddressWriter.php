@@ -176,7 +176,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
             return $this->restApiError->addCompanyUnitAddressNotFoundError($restResponse);
         }
 
-        $companyUnitAddressTransfer->fromArray($restCompanyUnitAddressAttributesTransfer->modifiedToArray(), true);
+        $companyUnitAddressTransfer->fromArray($restCompanyUnitAddressAttributesTransfer->toArray(), true);
         $countryTransfer = $this->findCountryByIso2Code($restCompanyUnitAddressAttributesTransfer);
         $companyUnitAddressTransfer->setFkCountry($countryTransfer->getIdCountry());
 

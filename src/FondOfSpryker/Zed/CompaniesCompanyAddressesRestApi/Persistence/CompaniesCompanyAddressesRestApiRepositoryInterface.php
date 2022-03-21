@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Persistence;
 
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer;
 
 interface CompaniesCompanyAddressesRestApiRepositoryInterface
 {
@@ -13,5 +14,23 @@ interface CompaniesCompanyAddressesRestApiRepositoryInterface
      */
     public function findIdCompanyUnitAddressByByRestCompaniesCompanyAddressesDeleteRequest(
         RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
+    ): ?int;
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return int|null
+     */
+    public function findIdCompanyUnitAddressByByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): ?int;
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return int|null
+     */
+    public function findIdCompanyBusinessUnitByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
     ): ?int;
 }

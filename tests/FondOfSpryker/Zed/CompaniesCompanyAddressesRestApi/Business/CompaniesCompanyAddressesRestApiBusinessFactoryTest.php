@@ -92,7 +92,7 @@ class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
 
         static::assertInstanceOf(
             CompanyBusinessUnitReader::class,
-            $this->factory->createCompanyBusinessUnitReader()
+            $this->factory->createCompanyBusinessUnitReader(),
         );
     }
 
@@ -105,7 +105,7 @@ class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
             ->method('has')
             ->withConsecutive(
                 [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_EVENT],
-                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS]
+                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS],
             )
             ->willReturn(true);
 
@@ -113,15 +113,15 @@ class CompaniesCompanyAddressesRestApiBusinessFactoryTest extends Unit
             ->method('get')
             ->withConsecutive(
                 [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_EVENT],
-                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS]
+                [CompaniesCompanyAddressesRestApiDependencyProvider::FACADE_COMPANY_UNIT_ADDRESS],
             )->willReturnOnConsecutiveCalls(
                 $this->eventFacadeMock,
-                $this->companyUnitAddressFacadeMock
+                $this->companyUnitAddressFacadeMock,
             );
 
         $this->assertInstanceOf(
             CompanyUnitAddressDeleter::class,
-            $this->factory->createCompanyUnitAddressDeleter()
+            $this->factory->createCompanyUnitAddressDeleter(),
         );
     }
 }

@@ -130,7 +130,7 @@ class CompanyUnitAddressDeleterTest extends Unit
             ->willReturnCallback(
                 static function ($callable) {
                     return $callable();
-                }
+                },
             );
 
         $this->repositoryMock->expects(static::atLeastOnce())
@@ -144,8 +144,8 @@ class CompanyUnitAddressDeleterTest extends Unit
                 static::callback(
                     static function (CompanyUnitAddressTransfer $companyUnitAddressTransfer) use ($idCompanyUnitAddress) {
                         return $idCompanyUnitAddress === $companyUnitAddressTransfer->getIdCompanyUnitAddress();
-                    }
-                )
+                    },
+                ),
             )->willReturn($this->companyUnitAddressTransferMock);
 
         $this->companyUnitAddressFacadeMock->expects(static::atLeastOnce())
@@ -161,12 +161,12 @@ class CompanyUnitAddressDeleterTest extends Unit
             ->method('trigger')
             ->with(
                 CompaniesCompanyAddressesRestApiEvents::COMPANY_UNIT_ADDRESS_AFTER_DELETE,
-                $this->companyUnitAddressTransferMock
+                $this->companyUnitAddressTransferMock,
             );
 
         $restCompaniesCompanyAddressesDeleteResponseTransfer = $this->companyUnitAddressDeleter
             ->deleteByRestCompaniesCompanyAddressesDeleteRequest(
-                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock
+                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock,
             );
 
         static::assertCount(1, $restCompaniesCompanyAddressesDeleteResponseTransfer->getMessages());

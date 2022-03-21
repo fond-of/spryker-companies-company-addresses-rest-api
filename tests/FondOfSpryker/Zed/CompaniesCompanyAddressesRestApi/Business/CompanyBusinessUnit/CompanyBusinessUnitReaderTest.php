@@ -46,7 +46,7 @@ class CompanyBusinessUnitReaderTest extends Unit
         $this->fkCompany = 1;
 
         $this->companyBusinessUnitReader = new CompanyBusinessUnitReader(
-            $this->companyBusinessUnitFacadeInterfaceMock
+            $this->companyBusinessUnitFacadeInterfaceMock,
         );
     }
 
@@ -70,8 +70,8 @@ class CompanyBusinessUnitReaderTest extends Unit
         $this->assertInstanceOf(
             CompanyBusinessUnitTransfer::class,
             $this->companyBusinessUnitReader->findDefaultCompanyBusinessUnitByCompanyId(
-                $this->companyBusinessUnitTransferMock
-            )
+                $this->companyBusinessUnitTransferMock,
+            ),
         );
     }
 }

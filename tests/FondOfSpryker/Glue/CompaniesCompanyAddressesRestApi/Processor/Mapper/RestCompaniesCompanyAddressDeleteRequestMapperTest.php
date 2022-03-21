@@ -61,7 +61,7 @@ class RestCompaniesCompanyAddressDeleteRequestMapperTest extends Unit
         $this->restCompaniesCompanyAddressDeleteRequestMapper = new RestCompaniesCompanyAddressDeleteRequestMapper(
             $this->customerIdFilterMock,
             $this->companyUuidFilterMock,
-            $this->companyUnitAddressUuidFilterMock
+            $this->companyUnitAddressUuidFilterMock,
         );
     }
 

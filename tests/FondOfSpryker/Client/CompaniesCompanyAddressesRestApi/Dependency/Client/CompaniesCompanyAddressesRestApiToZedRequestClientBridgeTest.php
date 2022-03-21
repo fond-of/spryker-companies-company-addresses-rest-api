@@ -46,7 +46,7 @@ class CompaniesCompanyAddressesRestApiToZedRequestClientBridgeTest extends Unit
             ->getMock();
 
         $this->companiesCompanyAddressesRestApiToZedRequestClientBridge = new CompaniesCompanyAddressesRestApiToZedRequestClientBridge(
-            $this->zedRequestClientInterfaceMock
+            $this->zedRequestClientInterfaceMock,
         );
     }
 
@@ -63,8 +63,8 @@ class CompaniesCompanyAddressesRestApiToZedRequestClientBridgeTest extends Unit
             TransferInterface::class,
             $this->companiesCompanyAddressesRestApiToZedRequestClientBridge->call(
                 $this->url,
-                $this->transferInterfaceMock
-            )
+                $this->transferInterfaceMock,
+            ),
         );
     }
 }

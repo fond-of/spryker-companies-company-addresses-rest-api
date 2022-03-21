@@ -14,5 +14,4 @@
             <parameter name="key_columns" value="id_company_unit_address.fk_company"/>
         </behavior>
     </table>
-
 </database>

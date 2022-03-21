@@ -43,8 +43,8 @@ class RestApiErrorTest extends Unit
         $this->assertInstanceOf(
             RestResponseInterface::class,
             $this->restApiError->processCompanyUnitAddressErrorOnCreate(
-                $this->restResponseInterfaceMock
-            )
+                $this->restResponseInterfaceMock,
+            ),
         );
     }
 
@@ -60,8 +60,8 @@ class RestApiErrorTest extends Unit
         $this->assertInstanceOf(
             RestResponseInterface::class,
             $this->restApiError->addCompanyUnitAddressUuidMissingError(
-                $this->restResponseInterfaceMock
-            )
+                $this->restResponseInterfaceMock,
+            ),
         );
     }
 
@@ -77,8 +77,8 @@ class RestApiErrorTest extends Unit
         $this->assertInstanceOf(
             RestResponseInterface::class,
             $this->restApiError->addCompanyUnitAddressNotFoundError(
-                $this->restResponseInterfaceMock
-            )
+                $this->restResponseInterfaceMock,
+            ),
         );
     }
 
@@ -94,8 +94,8 @@ class RestApiErrorTest extends Unit
         $this->assertInstanceOf(
             RestResponseInterface::class,
             $this->restApiError->processCompanyUnitAddressErrorOnUpdate(
-                $this->restResponseInterfaceMock
-            )
+                $this->restResponseInterfaceMock,
+            ),
         );
     }
 
@@ -111,8 +111,8 @@ class RestApiErrorTest extends Unit
         $this->assertInstanceOf(
             RestResponseInterface::class,
             $this->restApiError->addCompanyUnitAddressForCompanyNotFoundError(
-                $this->restResponseInterfaceMock
-            )
+                $this->restResponseInterfaceMock,
+            ),
         );
     }
 }

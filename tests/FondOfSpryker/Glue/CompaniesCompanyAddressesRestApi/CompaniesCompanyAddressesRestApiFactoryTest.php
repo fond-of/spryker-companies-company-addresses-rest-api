@@ -90,7 +90,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
 
         $this->assertInstanceOf(
             CompanyBusinessUnitClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCompanyBusinessUnitClient()
+            $this->companiesCompanyAddressesRestApiFactory->getCompanyBusinessUnitClient(),
         );
     }
 
@@ -110,7 +110,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
 
         $this->assertInstanceOf(
             CompanyUnitAddressClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCompanyUnitAddressClient()
+            $this->companiesCompanyAddressesRestApiFactory->getCompanyUnitAddressClient(),
         );
     }
 
@@ -130,7 +130,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
 
         $this->assertInstanceOf(
             CompanyClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCompanyClient()
+            $this->companiesCompanyAddressesRestApiFactory->getCompanyClient(),
         );
     }
 
@@ -150,7 +150,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
 
         $this->assertInstanceOf(
             CountryClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCountryClient()
+            $this->companiesCompanyAddressesRestApiFactory->getCountryClient(),
         );
     }
 
@@ -161,7 +161,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
     {
         $this->assertInstanceOf(
             RestApiErrorInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->createRestApiError()
+            $this->companiesCompanyAddressesRestApiFactory->createRestApiError(),
         );
     }
 
@@ -172,7 +172,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
     {
         $this->assertInstanceOf(
             CompanyUnitAddressResourceMapperInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->createCompanyUnitAddressResourceMapper()
+            $this->companiesCompanyAddressesRestApiFactory->createCompanyUnitAddressResourceMapper(),
         );
     }
 }

@@ -87,8 +87,8 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
         static::assertEquals(
             $this->companyBusinessUnitTransferMock,
             $this->companiesCompanyAddressesRestApiClient->findDefaultCompanyBusinessUnitByCompanyId(
-                $this->companyBusinessUnitTransferMock
-            )
+                $this->companyBusinessUnitTransferMock,
+            ),
         );
     }
 
@@ -109,8 +109,8 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
         static::assertEquals(
             $this->restCompaniesCompanyAddressesDeleteResponseTransferMock,
             $this->companiesCompanyAddressesRestApiClient->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
-                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock
-            )
+                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock,
+            ),
         );
     }
 }

@@ -50,8 +50,8 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
         $this->assertInstanceOf(
             ResourceRouteCollectionInterface::class,
             $this->companiesCompanyAddressesResourceRoutePlugin->configure(
-                $this->resourceRouteCollectionInterfaceMock
-            )
+                $this->resourceRouteCollectionInterfaceMock,
+            ),
         );
     }
 
@@ -62,7 +62,7 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
     {
         $this->assertSame(
             CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES_COMPANY_ADDRESSES,
-            $this->companiesCompanyAddressesResourceRoutePlugin->getResourceType()
+            $this->companiesCompanyAddressesResourceRoutePlugin->getResourceType(),
         );
     }
 
@@ -73,7 +73,7 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
     {
         $this->assertSame(
             CompaniesCompanyAddressesRestApiConfig::CONTROLLER_COMPANIES_COMPANY_ADDRESSES,
-            $this->companiesCompanyAddressesResourceRoutePlugin->getController()
+            $this->companiesCompanyAddressesResourceRoutePlugin->getController(),
         );
     }
 
@@ -84,7 +84,7 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
     {
         $this->assertSame(
             RestCompanyUnitAddressAttributesTransfer::class,
-            $this->companiesCompanyAddressesResourceRoutePlugin->getResourceAttributesClassName()
+            $this->companiesCompanyAddressesResourceRoutePlugin->getResourceAttributesClassName(),
         );
     }
 
@@ -95,7 +95,7 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
     {
         $this->assertSame(
             CompaniesRestApiConfig::RESOURCE_COMPANIES,
-            $this->companiesCompanyAddressesResourceRoutePlugin->getParentResourceType()
+            $this->companiesCompanyAddressesResourceRoutePlugin->getParentResourceType(),
         );
     }
 }

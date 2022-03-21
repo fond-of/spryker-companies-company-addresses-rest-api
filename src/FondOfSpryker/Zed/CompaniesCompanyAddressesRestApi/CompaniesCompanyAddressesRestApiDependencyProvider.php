@@ -4,6 +4,7 @@ namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi;
 
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventFacadeBridge;
+use Orm\Zed\CompanyBusinessUnit\Persistence\SpyCompanyBusinessUnitQuery;
 use Orm\Zed\CompanyUnitAddress\Persistence\SpyCompanyUnitAddressQuery;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
@@ -29,6 +30,13 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
      * @var string
      */
     public const PROPEL_QUERY_COMPANY_UNIT_ADDRESS = 'PROPEL_QUERY_COMPANY_UNIT_ADDRESS';
+
+    /**
+     * @string
+     *
+     * @var string
+     */
+    public const PROPEL_QUERY_COMPANY_BUSINESS_UNIT = 'PROPEL_QUERY_COMPANY_BUSINESS_UNIT';
 
     /**
      * @var string
@@ -59,7 +67,9 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
     {
         $container = parent::providePersistenceLayerDependencies($container);
 
-        return $this->addCompanyUnitAddressPropelQuery($container);
+        $container = $this->addCompanyUnitAddressQuery($container);
+
+        return $this->addCompanyBusinessUnitQuery($container);
     }
 
     /**
@@ -97,10 +107,24 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addCompanyUnitAddressPropelQuery(Container $container): Container
+    protected function addCompanyUnitAddressQuery(Container $container): Container
     {
         $container[static::PROPEL_QUERY_COMPANY_UNIT_ADDRESS] = static function () {
             return SpyCompanyUnitAddressQuery::create();
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addCompanyBusinessUnitQuery(Container $container): Container
+    {
+        $container[static::PROPEL_QUERY_COMPANY_BUSINESS_UNIT] = static function () {
+            return SpyCompanyBusinessUnitQuery::create();
         };
 
         return $container;

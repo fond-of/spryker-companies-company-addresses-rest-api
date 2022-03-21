@@ -53,7 +53,7 @@ class RestApiValidatorTest extends Unit
     protected $companyUserTransferMock;
 
     /**
-     * @var \ArrayObject|\Generated\Shared\Transfer\CompanyUserTransfer[]
+     * @var \Generated\Shared\Transfer\CompanyUserTransfer[]|\ArrayObject
      */
     protected $companyUsers;
 
@@ -93,7 +93,7 @@ class RestApiValidatorTest extends Unit
         ]);
 
         $this->restApiValidator = new RestApiValidator(
-            $this->restApiErrorInterfaceMock
+            $this->restApiErrorInterfaceMock,
         );
     }
 
@@ -117,8 +117,8 @@ class RestApiValidatorTest extends Unit
         $this->assertTrue(
             $this->restApiValidator->isCompanyAddress(
                 $this->restRequestInterfaceMock,
-                $this->companyTransferMock
-            )
+                $this->companyTransferMock,
+            ),
         );
     }
 
@@ -150,8 +150,8 @@ class RestApiValidatorTest extends Unit
         $this->assertTrue(
             $this->restApiValidator->isCustomerCompanyUser(
                 $this->restRequestInterfaceMock,
-                $this->companyUserCollectionTransferMock
-            )
+                $this->companyUserCollectionTransferMock,
+            ),
         );
     }
 
@@ -171,8 +171,8 @@ class RestApiValidatorTest extends Unit
         $this->assertFalse(
             $this->restApiValidator->isCustomerCompanyUser(
                 $this->restRequestInterfaceMock,
-                $this->companyUserCollectionTransferMock
-            )
+                $this->companyUserCollectionTransferMock,
+            ),
         );
     }
 }

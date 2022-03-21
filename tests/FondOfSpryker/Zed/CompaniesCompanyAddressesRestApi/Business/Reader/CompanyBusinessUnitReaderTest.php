@@ -73,7 +73,7 @@ class CompanyBusinessUnitReaderTest extends Unit
         $idCompanyBusinessUnit = 1;
 
         $this->repositoryMock->expects(static::atLeastOnce())
-            ->method('findIdCompanyBusinessUnitByByRestCompaniesCompanyAddressesRequest')
+            ->method('findIdCompanyBusinessUnitByRestCompaniesCompanyAddressesRequest')
             ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
             ->willReturn($idCompanyBusinessUnit);
 
@@ -101,7 +101,7 @@ class CompanyBusinessUnitReaderTest extends Unit
     public function testGetByRestCompaniesCompanyAddressesRequestWithError(): void
     {
         $this->repositoryMock->expects(static::atLeastOnce())
-            ->method('findIdCompanyBusinessUnitByByRestCompaniesCompanyAddressesRequest')
+            ->method('findIdCompanyBusinessUnitByRestCompaniesCompanyAddressesRequest')
             ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
             ->willReturn(null);
 

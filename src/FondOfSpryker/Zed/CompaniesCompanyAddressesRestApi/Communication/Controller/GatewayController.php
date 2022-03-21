@@ -32,7 +32,7 @@ class GatewayController extends AbstractGatewayController
         RestCompaniesCompanyAddressesDeleteRequestTransfer $restCompaniesCompanyAddressesDeleteRequestTransfer
     ): RestCompaniesCompanyAddressesDeleteResponseTransfer {
         return $this->getFacade()->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
-            $restCompaniesCompanyAddressesDeleteRequestTransfer
+            $restCompaniesCompanyAddressesDeleteRequestTransfer,
         );
     }
 }

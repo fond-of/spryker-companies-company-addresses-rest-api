@@ -60,9 +60,9 @@ class CompanyUnitAddressDeleter implements CompanyUnitAddressDeleterInterface
         return $this->getTransactionHandler()->handleTransaction(
             static function () use ($self, $restCompaniesCompanyAddressesDeleteRequestTransfer) {
                 return $self->doDeleteByRestCompaniesCompanyAddressesDeleteRequest(
-                    $restCompaniesCompanyAddressesDeleteRequestTransfer
+                    $restCompaniesCompanyAddressesDeleteRequestTransfer,
                 );
-            }
+            },
         );
     }
 
@@ -79,7 +79,7 @@ class CompanyUnitAddressDeleter implements CompanyUnitAddressDeleterInterface
 
         $idCompanyUnitAddress = $this->repository
             ->findIdCompanyUnitAddressByByRestCompaniesCompanyAddressesDeleteRequest(
-                $restCompaniesCompanyAddressesDeleteRequestTransfer
+                $restCompaniesCompanyAddressesDeleteRequestTransfer,
             );
 
         if ($idCompanyUnitAddress === null) {
@@ -95,14 +95,14 @@ class CompanyUnitAddressDeleter implements CompanyUnitAddressDeleterInterface
             ->setIdCompanyUnitAddress($idCompanyUnitAddress);
 
         $companyUnitAddressTransfer = $this->companyUnitAddressFacade->getCompanyUnitAddressById(
-            $companyUnitAddressTransfer
+            $companyUnitAddressTransfer,
         );
 
         $this->companyUnitAddressFacade->delete($companyUnitAddressTransfer);
 
         $this->triggerEvent(
             CompaniesCompanyAddressesRestApiEvents::COMPANY_UNIT_ADDRESS_AFTER_DELETE,
-            $companyUnitAddressTransfer->setIsDeleted(true)
+            $companyUnitAddressTransfer->setIsDeleted(true),
         );
 
         $messageTransfer = (new MessageTransfer())

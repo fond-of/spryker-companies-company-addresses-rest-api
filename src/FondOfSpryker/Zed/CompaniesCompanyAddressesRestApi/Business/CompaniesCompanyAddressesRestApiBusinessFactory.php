@@ -23,7 +23,7 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     public function createCompanyBusinessUnitReader(): CompanyBusinessUnitReaderInterface
     {
         return new CompanyBusinessUnitReader(
-            $this->getCompanyBusinessUnitFacade()
+            $this->getCompanyBusinessUnitFacade(),
         );
     }
 
@@ -35,7 +35,7 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
         return new CompanyUnitAddressDeleter(
             $this->getRepository(),
             $this->getEventFacade(),
-            $this->getCompanyUnitAddressFacade()
+            $this->getCompanyUnitAddressFacade(),
         );
     }
 

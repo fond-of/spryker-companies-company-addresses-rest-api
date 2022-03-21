@@ -10,12 +10,29 @@ use Spryker\Zed\Kernel\Container;
 
 class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const FACADE_COMPANY_BUSINESS_UNIT = 'FACADE_COMPANY_BUSINESS_UNIT';
+
+    /**
+     * @var string
+     */
     public const FACADE_COMPANY_UNIT_ADDRESS = 'FACADE_COMPANY_UNIT_ADDRESS';
+
+    /**
+     * @var string
+     */
     public const FACADE_EVENT = 'FACADE_EVENT';
 
+    /**
+     * @var string
+     */
     public const PROPEL_QUERY_COMPANY_UNIT_ADDRESS = 'PROPEL_QUERY_COMPANY_UNIT_ADDRESS';
 
+    /**
+     * @var string
+     */
     public const PLUGINS_COMPANY_UNIT_ADDRESS_EXPANDER = 'PLUGINS_COMPANY_UNIT_ADDRESS_EXPANDER';
 
     /**
@@ -68,7 +85,7 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
     {
         $container[static::FACADE_COMPANY_UNIT_ADDRESS] = static function (Container $container) {
             return new CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge(
-                $container->getLocator()->companyUnitAddress()->facade()
+                $container->getLocator()->companyUnitAddress()->facade(),
             );
         };
 

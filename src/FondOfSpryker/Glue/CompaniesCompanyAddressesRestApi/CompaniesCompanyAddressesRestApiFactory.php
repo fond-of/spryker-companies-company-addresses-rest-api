@@ -44,34 +44,49 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
         return new CompanyUnitAddressDeleter(
             $this->createRestResponseBuilder(),
             $this->createRestCompaniesCompanyAddressDeleteRequestMapper(),
-            $this->getClient()
+            $this->getClient(),
         );
     }
 
+    /**
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Builder\RestResponseBuilderInterface
+     */
     protected function createRestResponseBuilder(): RestResponseBuilderInterface
     {
         return new RestResponseBuilder($this->getResourceBuilder());
     }
 
+    /**
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\RestCompaniesCompanyAddressDeleteRequestMapperInterface
+     */
     protected function createRestCompaniesCompanyAddressDeleteRequestMapper(): RestCompaniesCompanyAddressDeleteRequestMapperInterface
     {
         return new RestCompaniesCompanyAddressDeleteRequestMapper(
             $this->createCustomerIdFilter(),
             $this->createCompanyUuidFilter(),
-            $this->createCompanyUnitAddressUuidFilter()
+            $this->createCompanyUnitAddressUuidFilter(),
         );
     }
 
+    /**
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Filter\CustomerIdFilterInterface
+     */
     protected function createCustomerIdFilter(): CustomerIdFilterInterface
     {
         return new CustomerIdFilter();
     }
 
+    /**
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Filter\CompanyUuidFilterInterface
+     */
     protected function createCompanyUuidFilter(): CompanyUuidFilterInterface
     {
         return new CompanyUuidFilter();
     }
 
+    /**
+     * @return \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Filter\CompanyUnitAddressUuidFilterInterface
+     */
     protected function createCompanyUnitAddressUuidFilter(): CompanyUnitAddressUuidFilterInterface
     {
         return new CompanyUnitAddressUuidFilter();
@@ -92,7 +107,7 @@ class CompaniesCompanyAddressesRestApiFactory extends AbstractFactory
             $this->getClient(),
             $this->createCompanyUnitAddressResourceMapper(),
             $this->createRestApiError(),
-            $this->createRestApiValidator()
+            $this->createRestApiValidator(),
         );
     }
 

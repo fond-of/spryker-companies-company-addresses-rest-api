@@ -69,6 +69,11 @@ class CompaniesCompanyAddressesRestApiRepository extends AbstractRepository impl
         return $idCompanyUnitAddress;
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return int|null
+     */
     public function findIdCompanyBusinessUnitByRestCompaniesCompanyAddressesRequest(
         RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
     ): ?int {

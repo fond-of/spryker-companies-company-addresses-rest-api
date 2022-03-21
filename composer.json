@@ -8,6 +8,12 @@
       "email": "gengjozsef86@gmail.com"
     }
   ],
+  "scripts": {
+    "ci": "make ci",
+    "codeception": "make codeception",
+    "phpcs": "make phpcs",
+    "phpstan": "make phpstan"
+  },
   "require": {
     "php": ">=7.3",
     "fond-of-spryker/companies-company-users-rest-api": "dev-spryker_upgrade",

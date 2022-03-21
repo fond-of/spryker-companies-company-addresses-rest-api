@@ -9,10 +9,29 @@ use Spryker\Glue\Kernel\Container;
 
 class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleDependencyProvider
 {
+    /**
+     * @var string
+     */
     public const CLIENT_COMPANY_BUSINESS_UNIT = 'CLIENT_COMPANY_BUSINESS_UNIT';
+
+    /**
+     * @var string
+     */
     public const CLIENT_COMPANY = 'CLIENT_COMPANY';
+
+    /**
+     * @var string
+     */
     public const CLIENT_COMPANY_USER = 'CLIENT_COMPANY_USER';
+
+    /**
+     * @var string
+     */
     public const CLIENT_COMPANY_UNIT_ADDRESS = 'CLIENT_COMPANY_UNIT_ADDRESS';
+
+    /**
+     * @var string
+     */
     public const CLIENT_COUNTRY = 'CLIENT_COUNTRY';
 
     /**

@@ -33,7 +33,7 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
         /** @var \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null $companyBusinessUnitTransfer */
         $companyBusinessUnitTransfer = $this->zedRequestClient->call(
             '/companies-company-addresses-rest-api/gateway/find-default-company-business-unit-by-company-id',
-            $companyBusinessUnitTransfer
+            $companyBusinessUnitTransfer,
         );
 
         return $companyBusinessUnitTransfer;
@@ -50,7 +50,7 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
         /** @var \Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer $restCompaniesCompanyAddressesDeleteResponseTransfer */
         $restCompaniesCompanyAddressesDeleteResponseTransfer = $this->zedRequestClient->call(
             '/companies-company-addresses-rest-api/gateway/delete-company-unit-address-by-rest-companies-company-addresses-delete-request',
-            $restCompaniesCompanyAddressesDeleteRequestTransfer
+            $restCompaniesCompanyAddressesDeleteRequestTransfer,
         );
 
         return $restCompaniesCompanyAddressesDeleteResponseTransfer;

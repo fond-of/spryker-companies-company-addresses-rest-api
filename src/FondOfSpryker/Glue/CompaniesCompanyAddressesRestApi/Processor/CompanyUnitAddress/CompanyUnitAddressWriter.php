@@ -147,7 +147,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         }
 
         return $restResponse->addResource(
-            $this->getCompanyUnitAddressResource($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer())
+            $this->getCompanyUnitAddressResource($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer()),
         );
     }
 
@@ -192,7 +192,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         }
 
         return $restResponse->addResource(
-            $this->getCompanyUnitAddressResource($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer())
+            $this->getCompanyUnitAddressResource($companyUnitAddressResponseTransfer->getCompanyUnitAddressTransfer()),
         );
     }
 
@@ -234,13 +234,13 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         $restCompanyUnitAddressResponseTransferAddressAttributesTransfer = $this
             ->companyUnitAddressResourceMapper
             ->mapCompanyUnitAddressTransferToRestCompanyUnitAddressAddressAttributesTransfer(
-                $companyUnitAddressTransfer
+                $companyUnitAddressTransfer,
             );
 
         return $this->restResourceBuilder->createRestResource(
             CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES_COMPANY_ADDRESSES,
             $restCompanyUnitAddressResponseTransferAddressAttributesTransfer->getUuid(),
-            $restCompanyUnitAddressResponseTransferAddressAttributesTransfer
+            $restCompanyUnitAddressResponseTransferAddressAttributesTransfer,
         );
     }
 

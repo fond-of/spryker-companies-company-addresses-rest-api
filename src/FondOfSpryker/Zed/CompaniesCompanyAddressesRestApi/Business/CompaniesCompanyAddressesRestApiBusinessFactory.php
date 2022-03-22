@@ -22,7 +22,7 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFactory
 {
     /**
-     * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleterInterface
+     * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Writer\CompanyUnitAddressWriterInterface
      */
     public function createCompanyUnitAddressWriter(): CompanyUnitAddressWriterInterface
     {
@@ -45,7 +45,7 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     }
 
     /**
-     * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyUnitAddressReaderInterface
+     * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyBusinessUnitReaderInterface
      */
     public function createCompanyBusinessUnitReader(): CompanyBusinessUnitReaderInterface
     {

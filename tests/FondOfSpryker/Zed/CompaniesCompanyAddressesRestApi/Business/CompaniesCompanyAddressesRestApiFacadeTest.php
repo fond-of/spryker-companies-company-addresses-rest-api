@@ -3,7 +3,6 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
 use Codeception\Test\Unit;
-
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleterInterface;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyBusinessUnitReaderInterface;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Writer\CompanyUnitAddressWriterInterface;
@@ -39,7 +38,6 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
      * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Writer\CompanyUnitAddressWriterInterface|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $companyUnitAddressWriterMock;
-
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer

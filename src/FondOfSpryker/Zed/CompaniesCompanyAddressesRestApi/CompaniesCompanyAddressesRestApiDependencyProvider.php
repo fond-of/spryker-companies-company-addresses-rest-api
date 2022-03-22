@@ -85,7 +85,7 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
     {
         $container[static::FACADE_COMPANY_BUSINESS_UNIT] = static function (Container $container) {
             return new CompaniesCompanyAddressesRestApiToCompanyBusinessUnitFacadeBridge(
-                $container->getLocator()->companyBusinessUnit()->facade()
+                $container->getLocator()->companyBusinessUnit()->facade(),
             );
         };
 

@@ -19,7 +19,6 @@ interface CompaniesCompanyAddressesRestApiFacadeInterface
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): CompanyBusinessUnitTransfer;
 
-
     /**
      * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
      *

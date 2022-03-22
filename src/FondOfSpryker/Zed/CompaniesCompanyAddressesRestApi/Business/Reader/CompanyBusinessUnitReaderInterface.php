@@ -10,7 +10,7 @@ interface CompanyBusinessUnitReaderInterface
     /**
      * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\CompanyUnitAddressTransfer|null
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
      */
     public function getByRestCompaniesCompanyAddressesRequest(
         RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer

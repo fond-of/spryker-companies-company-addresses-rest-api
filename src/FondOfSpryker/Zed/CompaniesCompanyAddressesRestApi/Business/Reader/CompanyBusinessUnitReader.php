@@ -58,6 +58,11 @@ class CompanyBusinessUnitReader implements CompanyBusinessUnitReaderInterface
         }
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
+     *
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer
+     */
     public function findDefaultCompanyBusinessUnitByCompanyId(
         CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
     ): CompanyBusinessUnitTransfer {

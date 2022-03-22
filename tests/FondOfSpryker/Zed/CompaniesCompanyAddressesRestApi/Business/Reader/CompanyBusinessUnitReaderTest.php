@@ -98,19 +98,44 @@ class CompanyBusinessUnitReaderTest extends Unit
     /**
      * @return void
      */
-    public function testGetByRestCompaniesCompanyAddressesRequestWithError(): void
+    public function testGetByRestCompaniesCompanyAddressesRequestWithNonExistingCompanyBusinessUnit(): void
     {
+        $idCompanyBusinessUnit = null;
+
         $this->repositoryMock->expects(static::atLeastOnce())
             ->method('findIdCompanyBusinessUnitByRestCompaniesCompanyAddressesRequest')
             ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
-            ->willReturn(null);
+            ->willReturn($idCompanyBusinessUnit);
+
+        $this->companyBusinessUnitFacadeMock->expects(static::never())
+            ->method('getCompanyBusinessUnitById');
+
+        static::assertEquals(
+            null,
+            $this->companyBusinessUnitReader->getByRestCompaniesCompanyAddressesRequest(
+                $this->restCompaniesCompanyAddressesRequestTransferMock,
+            ),
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetByRestCompaniesCompanyAddressesRequestWithError(): void
+    {
+        $idCompanyBusinessUnit = 1;
+
+        $this->repositoryMock->expects(static::atLeastOnce())
+            ->method('findIdCompanyBusinessUnitByRestCompaniesCompanyAddressesRequest')
+            ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
+            ->willReturn($idCompanyBusinessUnit);
 
         $this->companyBusinessUnitFacadeMock->expects(static::atLeastOnce())
             ->method('getCompanyBusinessUnitById')
             ->with(
                 static::callback(
-                    static function (CompanyBusinessUnitTransfer $companyBusinessUnitTransfer) {
-                        return $companyBusinessUnitTransfer->getIdCompanyBusinessUnit() === null;
+                    static function (CompanyBusinessUnitTransfer $companyBusinessUnitTransfer) use ($idCompanyBusinessUnit) {
+                        return $companyBusinessUnitTransfer->getIdCompanyBusinessUnit() === $idCompanyBusinessUnit;
                     },
                 ),
             )->willThrowException(new Exception());

@@ -98,19 +98,42 @@ class CompanyUnitAddressReaderTest extends Unit
     /**
      * @return void
      */
-    public function testGetByRestCompaniesCompanyAddressesRequestWithError(): void
+    public function testGetByRestCompaniesCompanyAddressesRequestWithNonExistingCompanyUnitAddress(): void
     {
         $this->repositoryMock->expects(static::atLeastOnce())
             ->method('findIdCompanyUnitAddressByByRestCompaniesCompanyAddressesRequest')
             ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
             ->willReturn(null);
 
+        $this->companyUnitAddressFacadeMock->expects(static::never())
+            ->method('getCompanyUnitAddressById');
+
+        static::assertEquals(
+            null,
+            $this->companyUnitAddressReader->getByRestCompaniesCompanyAddressesRequest(
+                $this->restCompaniesCompanyAddressesRequestTransferMock,
+            ),
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetByRestCompaniesCompanyAddressesRequestWithError(): void
+    {
+        $idCompanyUnitAddress = 1;
+
+        $this->repositoryMock->expects(static::atLeastOnce())
+            ->method('findIdCompanyUnitAddressByByRestCompaniesCompanyAddressesRequest')
+            ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
+            ->willReturn($idCompanyUnitAddress);
+
         $this->companyUnitAddressFacadeMock->expects(static::atLeastOnce())
             ->method('getCompanyUnitAddressById')
             ->with(
                 static::callback(
-                    static function (CompanyUnitAddressTransfer $companyUnitAddressTransfer) {
-                        return $companyUnitAddressTransfer->getIdCompanyUnitAddress() === null;
+                    static function (CompanyUnitAddressTransfer $companyUnitAddressTransfer) use ($idCompanyUnitAddress) {
+                        return $companyUnitAddressTransfer->getIdCompanyUnitAddress() === $idCompanyUnitAddress;
                     },
                 ),
             )->willThrowException(new Exception());

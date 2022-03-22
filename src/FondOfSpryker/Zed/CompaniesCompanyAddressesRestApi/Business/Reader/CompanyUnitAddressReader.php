@@ -45,6 +45,10 @@ class CompanyUnitAddressReader implements CompanyUnitAddressReaderInterface
                 $restCompaniesCompanyAddressesRequestTransfer,
             );
 
+        if ($idCompanyUnitAddress === null) {
+            return null;
+        }
+
         $companyUnitAddressTransfer = (new CompanyUnitAddressTransfer())
             ->setIdCompanyUnitAddress($idCompanyUnitAddress);
 

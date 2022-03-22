@@ -57,4 +57,13 @@ class CompanyBusinessUnitReader implements CompanyBusinessUnitReaderInterface
             return null;
         }
     }
+
+    public function findDefaultCompanyBusinessUnitByCompanyId(
+        CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
+    ): CompanyBusinessUnitTransfer {
+        $companyBusinessUnitTransfer->requireFkCompany();
+
+        return $this->companyBusinessUnitFacade
+            ->findDefaultBusinessUnitByCompanyId($companyBusinessUnitTransfer->getFkCompany());
+    }
 }

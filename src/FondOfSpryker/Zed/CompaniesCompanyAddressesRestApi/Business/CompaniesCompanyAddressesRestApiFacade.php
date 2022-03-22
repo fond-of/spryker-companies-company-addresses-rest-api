@@ -5,6 +5,8 @@ namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -37,5 +39,31 @@ class CompaniesCompanyAddressesRestApiFacade extends AbstractFacade implements C
         return $this->getFactory()
             ->createCompanyUnitAddressDeleter()
             ->deleteByRestCompaniesCompanyAddressesDeleteRequest($restCompaniesCompanyAddressesDeleteRequestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function createCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        return $this->getFactory()
+            ->createCompanyUnitAddressWriter()
+            ->createByRestCompaniesCompanyAddressesRequest($restCompaniesCompanyAddressesRequestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function updateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        return $this->getFactory()
+            ->createCompanyUnitAddressWriter()
+            ->updateByRestCompaniesCompanyAddressesRequest($restCompaniesCompanyAddressesRequestTransfer);
     }
 }

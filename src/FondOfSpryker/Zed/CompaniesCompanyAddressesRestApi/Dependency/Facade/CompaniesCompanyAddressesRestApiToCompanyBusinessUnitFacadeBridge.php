@@ -31,4 +31,14 @@ class CompaniesCompanyAddressesRestApiToCompanyBusinessUnitFacadeBridge implemen
     ): CompanyBusinessUnitTransfer {
         return $this->companyBusinessUnitFacade->getCompanyBusinessUnitById($companyBusinessUnitTransfer);
     }
+
+    /**
+     * @param int $idCompany
+     *
+     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer|null
+     */
+    public function findDefaultBusinessUnitByCompanyId(int $idCompany): ?CompanyBusinessUnitTransfer
+    {
+        return $this->companyBusinessUnitFacade->findDefaultBusinessUnitByCompanyId($idCompany);
+    }
 }

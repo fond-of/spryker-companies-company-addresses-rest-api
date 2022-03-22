@@ -2,6 +2,7 @@
 
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi;
 
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToCompanyBusinessUnitFacadeBridge;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToEventFacadeBridge;
 use Orm\Zed\CompanyBusinessUnit\Persistence\SpyCompanyBusinessUnitQuery;
@@ -9,6 +10,9 @@ use Orm\Zed\CompanyUnitAddress\Persistence\SpyCompanyUnitAddressQuery;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
+/**
+ * @codeCoverageIgnore
+ */
 class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleDependencyProvider
 {
     /**
@@ -80,7 +84,9 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractBundleD
     protected function addCompanyBusinessUnitFacade(Container $container): Container
     {
         $container[static::FACADE_COMPANY_BUSINESS_UNIT] = static function (Container $container) {
-            return $container->getLocator()->companyBusinessUnit()->facade();
+            return new CompaniesCompanyAddressesRestApiToCompanyBusinessUnitFacadeBridge(
+                $container->getLocator()->companyBusinessUnit()->facade()
+            );
         };
 
         return $container;

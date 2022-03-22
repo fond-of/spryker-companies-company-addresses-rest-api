@@ -3,11 +3,15 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyBusinessUnit\CompanyBusinessUnitReaderInterface;
+
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleterInterface;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyBusinessUnitReaderInterface;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Writer\CompanyUnitAddressWriterInterface;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer;
 
 class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
 {
@@ -22,7 +26,7 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
     protected $companyBusinessUnitTransferMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompanyBusinessUnit\CompanyBusinessUnitReaderInterface
+     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyBusinessUnitReaderInterface
      */
     protected $companyBusinessUnitReaderMock;
 
@@ -30,6 +34,12 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
      * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleterInterface
      */
     protected $companyUnitAddressDeleterMock;
+
+    /**
+     * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Writer\CompanyUnitAddressWriterInterface|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $companyUnitAddressWriterMock;
+
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer
@@ -40,6 +50,16 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
      * @var \PHPUnit\Framework\MockObject\MockObject|\Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer
      */
     protected $restCompaniesCompanyAddressesDeleteResponseTransferMock;
+
+    /**
+     * @var \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $restCompaniesCompanyAddressesRequestTransferMock;
+
+    /**
+     * @var \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $restCompaniesCompanyAddressesResponseTransferMock;
 
     /**
      * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiFacade
@@ -69,11 +89,23 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->companyUnitAddressWriterMock = $this->getMockBuilder(CompanyUnitAddressWriterInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->restCompaniesCompanyAddressesDeleteRequestTransferMock = $this->getMockBuilder(RestCompaniesCompanyAddressesDeleteRequestTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $this->restCompaniesCompanyAddressesDeleteResponseTransferMock = $this->getMockBuilder(RestCompaniesCompanyAddressesDeleteResponseTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->restCompaniesCompanyAddressesRequestTransferMock = $this->getMockBuilder(RestCompaniesCompanyAddressesRequestTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->restCompaniesCompanyAddressesResponseTransferMock = $this->getMockBuilder(RestCompaniesCompanyAddressesResponseTransfer::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -120,6 +152,50 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
             $this->restCompaniesCompanyAddressesDeleteResponseTransferMock,
             $this->facade->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
                 $this->restCompaniesCompanyAddressesDeleteRequestTransferMock,
+            ),
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testCreateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(): void
+    {
+        $this->factoryMock->expects(static::atLeastOnce())
+            ->method('createCompanyUnitAddressWriter')
+            ->willReturn($this->companyUnitAddressWriterMock);
+
+        $this->companyUnitAddressWriterMock->expects(static::atLeastOnce())
+            ->method('createByRestCompaniesCompanyAddressesRequest')
+            ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
+            ->willReturn($this->restCompaniesCompanyAddressesResponseTransferMock);
+
+        static::assertEquals(
+            $this->restCompaniesCompanyAddressesResponseTransferMock,
+            $this->facade->createCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+                $this->restCompaniesCompanyAddressesRequestTransferMock,
+            ),
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testUpdateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(): void
+    {
+        $this->factoryMock->expects(static::atLeastOnce())
+            ->method('createCompanyUnitAddressWriter')
+            ->willReturn($this->companyUnitAddressWriterMock);
+
+        $this->companyUnitAddressWriterMock->expects(static::atLeastOnce())
+            ->method('updateByRestCompaniesCompanyAddressesRequest')
+            ->with($this->restCompaniesCompanyAddressesRequestTransferMock)
+            ->willReturn($this->restCompaniesCompanyAddressesResponseTransferMock);
+
+        static::assertEquals(
+            $this->restCompaniesCompanyAddressesResponseTransferMock,
+            $this->facade->updateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+                $this->restCompaniesCompanyAddressesRequestTransferMock,
             ),
         );
     }

@@ -5,6 +5,8 @@ namespace FondOfSpryker\Client\CompaniesCompanyAddressesRestApi;
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer;
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
@@ -35,6 +37,38 @@ class CompaniesCompanyAddressesRestApiClient extends AbstractClient implements C
     ): RestCompaniesCompanyAddressesDeleteResponseTransfer {
         return $this->getFactory()
             ->createZedCompaniesCompanyAddressesRestApiStub()
-            ->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest($restCompaniesCompanyAddressesDeleteRequestTransfer);
+            ->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
+                $restCompaniesCompanyAddressesDeleteRequestTransfer,
+            );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function createCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        return $this->getFactory()
+            ->createZedCompaniesCompanyAddressesRestApiStub()
+            ->createCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+                $restCompaniesCompanyAddressesRequestTransfer,
+            );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function updateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        return $this->getFactory()
+            ->createZedCompaniesCompanyAddressesRestApiStub()
+            ->updateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+                $restCompaniesCompanyAddressesRequestTransfer,
+            );
     }
 }

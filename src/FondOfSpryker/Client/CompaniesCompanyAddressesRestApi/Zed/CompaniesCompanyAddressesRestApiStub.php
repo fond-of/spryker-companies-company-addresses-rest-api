@@ -6,6 +6,8 @@ use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\Comp
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer;
 
 class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesRestApiStubInterface
 {
@@ -54,5 +56,39 @@ class CompaniesCompanyAddressesRestApiStub implements CompaniesCompanyAddressesR
         );
 
         return $restCompaniesCompanyAddressesDeleteResponseTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function createCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        /** @var \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer $restCompaniesCompanyAddressesResponseTransfer */
+        $restCompaniesCompanyAddressesResponseTransfer = $this->zedRequestClient->call(
+            '/companies-company-addresses-rest-api/gateway/create-company-unit-address-by-rest-companies-company-addresses-request',
+            $restCompaniesCompanyAddressesRequestTransfer,
+        );
+
+        return $restCompaniesCompanyAddressesResponseTransfer;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function updateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        /** @var \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer $restCompaniesCompanyAddressesResponseTransfer */
+        $restCompaniesCompanyAddressesResponseTransfer = $this->zedRequestClient->call(
+            '/companies-company-addresses-rest-api/gateway/update-company-unit-address-by-rest-companies-company-addresses-request',
+            $restCompaniesCompanyAddressesRequestTransfer,
+        );
+
+        return $restCompaniesCompanyAddressesResponseTransfer;
     }
 }

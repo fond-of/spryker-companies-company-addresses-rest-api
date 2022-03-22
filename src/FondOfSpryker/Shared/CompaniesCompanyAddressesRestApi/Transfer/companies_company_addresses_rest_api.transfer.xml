@@ -28,6 +28,18 @@
         <property name="companyUnitAddressUuid" type="string"/>
     </transfer>
 
+    <transfer name="RestCompaniesCompanyAddressesRequest">
+        <property name="idCustomer" type="int"/>
+        <property name="companyUuid" type="string"/>
+        <property name="companyUnitAddressUuid" type="string"/>
+        <property name="companyUnitAddress" type="RestCompanyUnitAddressAttributes"/>
+    </transfer>
+
+    <transfer name="RestCompaniesCompanyAddressesResponse">
+        <property name="isSuccessful" type="bool"/>
+        <property name="companyUnitAddress" type="RestCompanyUnitAddressAttributes"/>
+    </transfer>
+
     <transfer name="RestCompaniesCompanyAddressesDeleteResponse">
         <property name="isSuccessful" type="bool"/>
         <property name="messages" type="Message[]"  singular="message"/>

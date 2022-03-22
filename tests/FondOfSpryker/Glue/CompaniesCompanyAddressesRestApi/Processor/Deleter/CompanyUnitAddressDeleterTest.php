@@ -91,7 +91,7 @@ class CompanyUnitAddressDeleterTest extends Unit
         $this->companyUnitAddressDeleter = new CompanyUnitAddressDeleter(
             $this->restResponseBuilderMock,
             $this->restCompaniesCompanyAddressDeleteRequestMapperMock,
-            $this->clientMock
+            $this->clientMock,
         );
     }
 
@@ -132,7 +132,7 @@ class CompanyUnitAddressDeleterTest extends Unit
 
         static::assertEquals(
             $this->restResponseMock,
-            $this->companyUnitAddressDeleter->deleteByRestRequest($this->restRequestMock)
+            $this->companyUnitAddressDeleter->deleteByRestRequest($this->restRequestMock),
         );
     }
 
@@ -165,7 +165,7 @@ class CompanyUnitAddressDeleterTest extends Unit
 
         static::assertEquals(
             $this->restResponseMock,
-            $this->companyUnitAddressDeleter->deleteByRestRequest($this->restRequestMock)
+            $this->companyUnitAddressDeleter->deleteByRestRequest($this->restRequestMock),
         );
     }
 
@@ -206,7 +206,7 @@ class CompanyUnitAddressDeleterTest extends Unit
 
         static::assertEquals(
             $this->restResponseMock,
-            $this->companyUnitAddressDeleter->deleteByRestRequest($this->restRequestMock)
+            $this->companyUnitAddressDeleter->deleteByRestRequest($this->restRequestMock),
         );
     }
 }

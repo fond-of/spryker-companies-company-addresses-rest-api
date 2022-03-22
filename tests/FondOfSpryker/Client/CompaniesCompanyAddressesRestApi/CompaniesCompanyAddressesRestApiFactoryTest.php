@@ -59,7 +59,7 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
 
         $this->assertInstanceOf(
             CompaniesCompanyAddressesRestApiStubInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->createZedCompaniesCompanyAddressesRestApiStub()
+            $this->companiesCompanyAddressesRestApiFactory->createZedCompaniesCompanyAddressesRestApiStub(),
         );
     }
 }

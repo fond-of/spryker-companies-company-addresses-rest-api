@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade;
 
 use Codeception\Test\Unit;
+use Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer;
 use Generated\Shared\Transfer\CompanyUnitAddressTransfer;
 use Spryker\Zed\CompanyUnitAddress\Business\CompanyUnitAddressFacadeInterface;
 
@@ -17,6 +18,11 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridgeTest exten
      * @var \Generated\Shared\Transfer\CompanyUnitAddressTransfer|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $companyUnitAddressTransferMock;
+
+    /**
+     * @var \Generated\Shared\Transfer\CompanyUnitAddressResponseTransfer|\PHPUnit\Framework\MockObject\MockObject
+     */
+    protected $companyUnitAddressResponseTransferMock;
 
     /**
      * @var \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Dependency\Facade\CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge
@@ -38,8 +44,12 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridgeTest exten
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->companyUnitAddressResponseTransferMock = $this->getMockBuilder(CompanyUnitAddressResponseTransfer::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->bridge = new CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridge(
-            $this->facadeMock
+            $this->facadeMock,
         );
     }
 
@@ -58,6 +68,38 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridgeTest exten
     /**
      * @return void
      */
+    public function testCreate(): void
+    {
+        $this->facadeMock->expects(static::atLeastOnce())
+            ->method('create')
+            ->with($this->companyUnitAddressTransferMock)
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        static::assertEquals(
+            $this->companyUnitAddressResponseTransferMock,
+            $this->bridge->create($this->companyUnitAddressTransferMock),
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testUpdate(): void
+    {
+        $this->facadeMock->expects(static::atLeastOnce())
+            ->method('update')
+            ->with($this->companyUnitAddressTransferMock)
+            ->willReturn($this->companyUnitAddressResponseTransferMock);
+
+        static::assertEquals(
+            $this->companyUnitAddressResponseTransferMock,
+            $this->bridge->update($this->companyUnitAddressTransferMock),
+        );
+    }
+
+    /**
+     * @return void
+     */
     public function testGetCompanyUnitAddressById(): void
     {
         $this->facadeMock->expects(static::atLeastOnce())
@@ -67,7 +109,7 @@ class CompaniesCompanyAddressesRestApiToCompanyUnitAddressFacadeBridgeTest exten
 
         static::assertEquals(
             $this->companyUnitAddressTransferMock,
-            $this->bridge->getCompanyUnitAddressById($this->companyUnitAddressTransferMock)
+            $this->bridge->getCompanyUnitAddressById($this->companyUnitAddressTransferMock),
         );
     }
 }

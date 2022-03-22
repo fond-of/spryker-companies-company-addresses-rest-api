@@ -97,8 +97,8 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
         static::assertEquals(
             $this->companyBusinessUnitTransferMock,
             $this->facade->findDefaultCompanyBusinessUnitByCompanyId(
-                $this->companyBusinessUnitTransferMock
-            )
+                $this->companyBusinessUnitTransferMock,
+            ),
         );
     }
 
@@ -119,8 +119,8 @@ class CompaniesCompanyAddressesRestApiFacadeTest extends Unit
         static::assertEquals(
             $this->restCompaniesCompanyAddressesDeleteResponseTransferMock,
             $this->facade->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
-                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock
-            )
+                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock,
+            ),
         );
     }
 }

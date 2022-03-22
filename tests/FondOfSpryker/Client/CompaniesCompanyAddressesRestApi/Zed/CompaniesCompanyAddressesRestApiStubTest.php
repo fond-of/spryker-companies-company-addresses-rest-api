@@ -59,7 +59,7 @@ class CompaniesCompanyAddressesRestApiStubTest extends Unit
             ->getMock();
 
         $this->stub = new CompaniesCompanyAddressesRestApiStub(
-            $this->zedRequestClientMock
+            $this->zedRequestClientMock,
         );
     }
 
@@ -72,15 +72,15 @@ class CompaniesCompanyAddressesRestApiStubTest extends Unit
             ->method('call')
             ->with(
                 '/companies-company-addresses-rest-api/gateway/find-default-company-business-unit-by-company-id',
-                $this->companyBusinessUnitTransferMock
+                $this->companyBusinessUnitTransferMock,
             )
             ->willReturn($this->companyBusinessUnitTransferMock);
 
         static::assertEquals(
             $this->companyBusinessUnitTransferMock,
             $this->stub->findDefaultCompanyBusinessUnitByCompanyId(
-                $this->companyBusinessUnitTransferMock
-            )
+                $this->companyBusinessUnitTransferMock,
+            ),
         );
     }
 
@@ -93,14 +93,14 @@ class CompaniesCompanyAddressesRestApiStubTest extends Unit
             ->method('call')
             ->with(
                 '/companies-company-addresses-rest-api/gateway/delete-company-unit-address-by-rest-companies-company-addresses-delete-request',
-                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock
+                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock,
             )->willReturn($this->restCompaniesCompanyAddressesDeleteResponseTransferMock);
 
         static::assertEquals(
             $this->restCompaniesCompanyAddressesDeleteResponseTransferMock,
             $this->stub->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
-                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock
-            )
+                $this->restCompaniesCompanyAddressesDeleteRequestTransferMock,
+            ),
         );
     }
 }

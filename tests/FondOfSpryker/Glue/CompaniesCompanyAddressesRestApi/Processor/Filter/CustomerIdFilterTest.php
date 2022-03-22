@@ -58,7 +58,7 @@ class CustomerIdFilterTest extends Unit
 
         static::assertEquals(
             $idCustomer,
-            $this->customerIdFilter->filterFromRestRequest($this->restRequestMock)
+            $this->customerIdFilter->filterFromRestRequest($this->restRequestMock),
         );
     }
 }

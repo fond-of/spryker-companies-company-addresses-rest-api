@@ -39,8 +39,8 @@ class CompaniesCompanyAddressesRestApiDependencyProviderTest extends Unit
         $this->assertInstanceOf(
             Container::class,
             $this->companiesCompanyAddressesRestApiDependencyProvider->provideServiceLayerDependencies(
-                $this->containerMock
-            )
+                $this->containerMock,
+            ),
         );
     }
 }

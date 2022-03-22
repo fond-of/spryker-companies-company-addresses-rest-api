@@ -176,7 +176,7 @@ class CompanyUnitAddressWriterTest extends Unit
     protected $companyUserTransferMock;
 
     /**
-     * @var \ArrayObject|\Generated\Shared\Transfer\CompanyUserTransfer[]
+     * @var \Generated\Shared\Transfer\CompanyUserTransfer[]|\ArrayObject
      */
     protected $companyUserTransferMocks;
 
@@ -303,7 +303,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->companiesCompanyAddressesRestApiClientInterfaceMock,
             $this->companyUnitAddressResourceMapperInterfaceMock,
             $this->restApiErrorInterfaceMock,
-            $this->restApiValidatorInterfaceMock
+            $this->restApiValidatorInterfaceMock,
         );
     }
 
@@ -380,8 +380,8 @@ class CompanyUnitAddressWriterTest extends Unit
             RestResponseInterface::class,
             $this->companyUnitAddressWriter->createCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 
@@ -454,8 +454,8 @@ class CompanyUnitAddressWriterTest extends Unit
             RestResponseInterface::class,
             $this->companyUnitAddressWriter->createCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 
@@ -544,8 +544,8 @@ class CompanyUnitAddressWriterTest extends Unit
             RestResponseInterface::class,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 
@@ -574,8 +574,8 @@ class CompanyUnitAddressWriterTest extends Unit
             RestResponseInterface::class,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 
@@ -612,8 +612,8 @@ class CompanyUnitAddressWriterTest extends Unit
             RestResponseInterface::class,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 
@@ -702,8 +702,8 @@ class CompanyUnitAddressWriterTest extends Unit
             RestResponseInterface::class,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestInterfaceMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 }

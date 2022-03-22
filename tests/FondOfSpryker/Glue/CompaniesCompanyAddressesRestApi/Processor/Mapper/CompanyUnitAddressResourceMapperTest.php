@@ -53,8 +53,8 @@ class CompanyUnitAddressResourceMapperTest extends Unit
         $this->assertInstanceOf(
             RestCompanyUnitAddressAttributesTransfer::class,
             $this->companyUnitAddressResourceMapper->mapCompanyUnitAddressTransferToRestCompanyUnitAddressAddressAttributesTransfer(
-                $this->companyUnitAddressTransferMock
-            )
+                $this->companyUnitAddressTransferMock,
+            ),
         );
     }
 
@@ -70,8 +70,8 @@ class CompanyUnitAddressResourceMapperTest extends Unit
         $this->assertInstanceOf(
             CompanyUnitAddressTransfer::class,
             $this->companyUnitAddressResourceMapper->mapRestCompanyUnitAddressAttributesTransferToCompanyUnitAddressTransfer(
-                $this->restCompanyUnitAddressAttributesTransferMock
-            )
+                $this->restCompanyUnitAddressAttributesTransferMock,
+            ),
         );
     }
 }

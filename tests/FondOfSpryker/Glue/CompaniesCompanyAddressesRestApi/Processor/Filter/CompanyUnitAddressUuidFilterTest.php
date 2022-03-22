@@ -58,7 +58,7 @@ class CompanyUnitAddressUuidFilterTest extends Unit
 
         static::assertEquals(
             $id,
-            $this->companyUnitAddressUuidFilter->filterFromRestRequest($this->restRequestMock)
+            $this->companyUnitAddressUuidFilter->filterFromRestRequest($this->restRequestMock),
         );
     }
 }

@@ -37,7 +37,7 @@ class CompaniesCompanyAddressesRestApiToEventFacadeBridgeTest extends Unit
             ->getMock();
 
         $this->bridge = new CompaniesCompanyAddressesRestApiToEventFacadeBridge(
-            $this->facadeMock
+            $this->facadeMock,
         );
     }
 

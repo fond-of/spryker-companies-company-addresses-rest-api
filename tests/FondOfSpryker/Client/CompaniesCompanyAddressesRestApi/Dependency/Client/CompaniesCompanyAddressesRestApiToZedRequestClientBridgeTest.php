@@ -9,24 +9,19 @@ use Spryker\Shared\Kernel\Transfer\TransferInterface;
 class CompaniesCompanyAddressesRestApiToZedRequestClientBridgeTest extends Unit
 {
     /**
-     * @var \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\CompaniesCompanyAddressesRestApiToZedRequestClientBridge
-     */
-    protected $companiesCompanyAddressesRestApiToZedRequestClientBridge;
-
-    /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Client\ZedRequest\ZedRequestClientInterface
      */
-    protected $zedRequestClientInterfaceMock;
+    protected $zedRequestClientMock;
 
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Shared\Kernel\Transfer\TransferInterface
      */
-    protected $transferInterfaceMock;
+    protected $transferMock;
 
     /**
-     * @var string
+     * @var \FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\CompaniesCompanyAddressesRestApiToZedRequestClientBridge
      */
-    protected $url;
+    protected $bridge;
 
     /**
      * @return void
@@ -35,18 +30,16 @@ class CompaniesCompanyAddressesRestApiToZedRequestClientBridgeTest extends Unit
     {
         parent::_before();
 
-        $this->zedRequestClientInterfaceMock = $this->getMockBuilder(ZedRequestClientInterface::class)
+        $this->zedRequestClientMock = $this->getMockBuilder(ZedRequestClientInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->url = 'url';
-
-        $this->transferInterfaceMock = $this->getMockBuilder(TransferInterface::class)
+        $this->transferMock = $this->getMockBuilder(TransferInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companiesCompanyAddressesRestApiToZedRequestClientBridge = new CompaniesCompanyAddressesRestApiToZedRequestClientBridge(
-            $this->zedRequestClientInterfaceMock,
+        $this->bridge = new CompaniesCompanyAddressesRestApiToZedRequestClientBridge(
+            $this->zedRequestClientMock,
         );
     }
 
@@ -55,15 +48,17 @@ class CompaniesCompanyAddressesRestApiToZedRequestClientBridgeTest extends Unit
      */
     public function testCall(): void
     {
-        $this->zedRequestClientInterfaceMock->expects($this->atLeastOnce())
+        $this->zedRequestClientMock->expects($this->atLeastOnce())
             ->method('call')
-            ->willReturn($this->transferInterfaceMock);
+            ->with('url', $this->transferMock, null)
+            ->willReturn($this->transferMock);
 
-        $this->assertInstanceOf(
-            TransferInterface::class,
-            $this->companiesCompanyAddressesRestApiToZedRequestClientBridge->call(
-                $this->url,
-                $this->transferInterfaceMock,
+        static::assertEquals(
+            $this->transferMock,
+            $this->bridge->call(
+                'url',
+                $this->transferMock,
+                null,
             ),
         );
     }

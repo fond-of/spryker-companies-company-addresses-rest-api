@@ -6,6 +6,9 @@ use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\Dependency\Client\Comp
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
 
+/**
+ * @codeCoverageIgnore
+ */
 class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractDependencyProvider
 {
     /**
@@ -20,9 +23,9 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractDepende
      */
     public function provideServiceLayerDependencies(Container $container): Container
     {
-        $container = $this->addZedRequestClient($container);
+        $container = parent::provideServiceLayerDependencies($container);
 
-        return $container;
+        return $this->addZedRequestClient($container);
     }
 
     /**
@@ -32,8 +35,10 @@ class CompaniesCompanyAddressesRestApiDependencyProvider extends AbstractDepende
      */
     protected function addZedRequestClient(Container $container): Container
     {
-        $container[static::CLIENT_ZED_REQUEST] = function (Container $container) {
-            return new CompaniesCompanyAddressesRestApiToZedRequestClientBridge($container->getLocator()->zedRequest()->client());
+        $container[static::CLIENT_ZED_REQUEST] = static function (Container $container) {
+            return new CompaniesCompanyAddressesRestApiToZedRequestClientBridge(
+                $container->getLocator()->zedRequest()->client(),
+            );
         };
 
         return $container;

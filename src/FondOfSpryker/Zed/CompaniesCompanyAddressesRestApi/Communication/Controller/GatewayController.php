@@ -5,9 +5,13 @@ namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Communication\Contr
 use Generated\Shared\Transfer\CompanyBusinessUnitTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteRequestTransfer;
 use Generated\Shared\Transfer\RestCompaniesCompanyAddressesDeleteResponseTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer;
+use Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
 /**
+ * @codeCoverageIgnore
+ *
  * @method \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\CompaniesCompanyAddressesRestApiFacadeInterface getFacade()
  */
 class GatewayController extends AbstractGatewayController
@@ -33,6 +37,32 @@ class GatewayController extends AbstractGatewayController
     ): RestCompaniesCompanyAddressesDeleteResponseTransfer {
         return $this->getFacade()->deleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(
             $restCompaniesCompanyAddressesDeleteRequestTransfer,
+        );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function createCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequestAction(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        return $this->getFacade()->createCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+            $restCompaniesCompanyAddressesRequestTransfer,
+        );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\RestCompaniesCompanyAddressesResponseTransfer
+     */
+    public function updateCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequestAction(
+        RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
+    ): RestCompaniesCompanyAddressesResponseTransfer {
+        return $this->getFacade()->updateCompanyUnitAddressByRestCompaniesCompanyAddressesRequest(
+            $restCompaniesCompanyAddressesRequestTransfer,
         );
     }
 }

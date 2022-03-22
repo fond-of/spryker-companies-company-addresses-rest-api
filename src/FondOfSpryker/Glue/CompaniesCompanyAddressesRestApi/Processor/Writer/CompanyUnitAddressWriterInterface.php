@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\CompanyUnitAddress;
+namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Writer;
 
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResponseInterface;

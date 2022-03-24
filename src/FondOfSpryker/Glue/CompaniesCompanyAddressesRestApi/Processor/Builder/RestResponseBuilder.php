@@ -117,6 +117,11 @@ class RestResponseBuilder implements RestResponseBuilderInterface
             ->setStatus(Response::HTTP_CREATED);
     }
 
+    /**
+     * @param \Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
+     *
+     * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface
+     */
     protected function createRestResource(
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
     ): RestResourceInterface {

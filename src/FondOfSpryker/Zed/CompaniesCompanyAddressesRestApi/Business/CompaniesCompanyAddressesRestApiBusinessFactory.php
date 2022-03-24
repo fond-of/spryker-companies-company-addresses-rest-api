@@ -68,6 +68,9 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
         return new CompanyUnitAddressMapper($this->createCompanyBusinessUnitReader());
     }
 
+    /**
+     * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Mapper\RestCompanyUnitAddressAttributesMapperInterface
+     */
     protected function createRestCompanyUnitAddressAttributesMapper(): RestCompanyUnitAddressAttributesMapperInterface
     {
         return new RestCompanyUnitAddressAttributesMapper();

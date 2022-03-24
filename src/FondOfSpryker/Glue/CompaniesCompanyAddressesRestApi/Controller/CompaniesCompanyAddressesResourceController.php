@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Controller;
 
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
@@ -10,6 +8,8 @@ use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 use Spryker\Glue\Kernel\Controller\AbstractController;
 
 /**
+ * @codeCoverageIgnore
+ *
  * @method \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiFactory getFactory()
  */
 class CompaniesCompanyAddressesResourceController extends AbstractController

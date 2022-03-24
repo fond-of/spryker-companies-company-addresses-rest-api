@@ -15,13 +15,4 @@ interface CompanyBusinessUnitReaderInterface
     public function getByRestCompaniesCompanyAddressesRequest(
         RestCompaniesCompanyAddressesRequestTransfer $restCompaniesCompanyAddressesRequestTransfer
     ): ?CompanyBusinessUnitTransfer;
-
-    /**
-     * @param \Generated\Shared\Transfer\CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-     *
-     * @return \Generated\Shared\Transfer\CompanyBusinessUnitTransfer
-     */
-    public function findDefaultCompanyBusinessUnitByCompanyId(
-        CompanyBusinessUnitTransfer $companyBusinessUnitTransfer
-    ): CompanyBusinessUnitTransfer;
 }

@@ -3,45 +3,18 @@
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi;
 
 use Codeception\Test\Unit;
-use FondOfSpryker\Client\Country\CountryClientInterface;
-use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Mapper\CompanyUnitAddressResourceMapperInterface;
-use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Validation\RestApiErrorInterface;
-use Spryker\Client\Company\CompanyClientInterface;
-use Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface;
-use Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface;
-use Spryker\Glue\Kernel\Container;
+use FondOfSpryker\Client\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiClient;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Deleter\CompanyUnitAddressDeleter;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Writer\CompanyUnitAddressWriter;
+use Spryker\Client\Kernel\AbstractClient;
+use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface;
 
 class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
 {
     /**
      * @var \FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiFactory
      */
-    protected $companiesCompanyAddressesRestApiFactory;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Glue\Kernel\Container
-     */
-    protected $containerMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Client\CompanyBusinessUnit\CompanyBusinessUnitClientInterface
-     */
-    protected $companyBusinessUnitClientInterfaceMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Client\CompanyUnitAddress\CompanyUnitAddressClientInterface
-     */
-    protected $companyUnitAddressClientInterfaceMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Spryker\Client\Company\CompanyClientInterface
-     */
-    protected $companyClientInterfaceMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\FondOfSpryker\Client\Country\CountryClientInterface
-     */
-    protected $countryClientInterfaceMock;
+    protected $factory;
 
     /**
      * @return void
@@ -50,129 +23,77 @@ class CompaniesCompanyAddressesRestApiFactoryTest extends Unit
     {
         parent::_before();
 
-        $this->containerMock = $this->getMockBuilder(Container::class)
+        $this->clientMock = $this->getMockBuilder(CompaniesCompanyAddressesRestApiClient::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyBusinessUnitClientInterfaceMock = $this->getMockBuilder(CompanyBusinessUnitClientInterface::class)
+        $this->restResourceBuilderMock = $this->getMockBuilder(RestResourceBuilderInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->companyUnitAddressClientInterfaceMock = $this->getMockBuilder(CompanyUnitAddressClientInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->factory = new class (
+            $this->clientMock,
+            $this->restResourceBuilderMock
+        ) extends CompaniesCompanyAddressesRestApiFactory {
+            /**
+             * @var \Spryker\Client\Kernel\AbstractClient
+             */
+            protected $abstractClient;
 
-        $this->companyClientInterfaceMock = $this->getMockBuilder(CompanyClientInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+            /**
+             * @var \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface
+             */
+            protected $restResourceBuilder;
 
-        $this->countryClientInterfaceMock = $this->getMockBuilder(CountryClientInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+            /**
+             * @param \Spryker\Client\Kernel\AbstractClient $abstractClient
+             * @param \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface $restResourceBuilder
+             */
+            public function __construct(
+                AbstractClient $abstractClient,
+                RestResourceBuilderInterface $restResourceBuilder
+            ) {
+                $this->restResourceBuilder = $restResourceBuilder;
+                $this->abstractClient = $abstractClient;
+            }
 
-        $this->companiesCompanyAddressesRestApiFactory = new CompaniesCompanyAddressesRestApiFactory();
-        $this->companiesCompanyAddressesRestApiFactory->setContainer($this->containerMock);
+            /**
+             * @return \Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceBuilderInterface
+             */
+            public function getResourceBuilder(): RestResourceBuilderInterface
+            {
+                return $this->restResourceBuilder;
+            }
+
+            /**
+             * @return \Spryker\Client\Kernel\AbstractClient
+             */
+            protected function getClient(): AbstractClient
+            {
+                return $this->abstractClient;
+            }
+        };
     }
 
     /**
      * @return void
      */
-    public function testGetCompanyBusinessUnitClient(): void
+    public function testCreateCompanyUnitAddressDeleter(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->with(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COMPANY_BUSINESS_UNIT)
-            ->willReturn($this->companyBusinessUnitClientInterfaceMock);
-
-        $this->assertInstanceOf(
-            CompanyBusinessUnitClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCompanyBusinessUnitClient(),
+        static::assertInstanceOf(
+            CompanyUnitAddressDeleter::class,
+            $this->factory->createCompanyUnitAddressDeleter(),
         );
     }
 
     /**
      * @return void
      */
-    public function testGetCompanyUnitAddressClient(): void
+    public function testCreateCompanyUnitAddressWriter(): void
     {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->with(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COMPANY_UNIT_ADDRESS)
-            ->willReturn($this->companyUnitAddressClientInterfaceMock);
-
-        $this->assertInstanceOf(
-            CompanyUnitAddressClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCompanyUnitAddressClient(),
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetCompanyClientInterface(): void
-    {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->with(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COMPANY)
-            ->willReturn($this->companyClientInterfaceMock);
-
-        $this->assertInstanceOf(
-            CompanyClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCompanyClient(),
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetCountryClient(): void
-    {
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('has')
-            ->willReturn(true);
-
-        $this->containerMock->expects($this->atLeastOnce())
-            ->method('get')
-            ->with(CompaniesCompanyAddressesRestApiDependencyProvider::CLIENT_COUNTRY)
-            ->willReturn($this->countryClientInterfaceMock);
-
-        $this->assertInstanceOf(
-            CountryClientInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->getCountryClient(),
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testCreatRestApiError(): void
-    {
-        $this->assertInstanceOf(
-            RestApiErrorInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->createRestApiError(),
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testCreateCompanyUnitAddressResourceMapper(): void
-    {
-        $this->assertInstanceOf(
-            CompanyUnitAddressResourceMapperInterface::class,
-            $this->companiesCompanyAddressesRestApiFactory->createCompanyUnitAddressResourceMapper(),
+        static::assertInstanceOf(
+            CompanyUnitAddressWriter::class,
+            $this->factory->createCompanyUnitAddressWriter(),
         );
     }
 }

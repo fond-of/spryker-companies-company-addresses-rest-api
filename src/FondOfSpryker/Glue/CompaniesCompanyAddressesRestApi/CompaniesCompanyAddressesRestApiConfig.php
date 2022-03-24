@@ -36,56 +36,6 @@ class CompaniesCompanyAddressesRestApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
-    public const RESPONSE_CODE_FAILED_CREATING_BUSINESS_UNIT_ADDRESS = '1000';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_CODE_BUSINESS_UNIT_UUID_MISSING = '1100';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_CODE_BUSINESS_UNIT_ADDRESS_NOT_FOUND = '1200';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_CODE_FAILED_UPDATE_BUSINESS_UNIT_ADDRESS = '1300';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_CODE_BUSINESS_UNIT_ADDRESS_FOR_COMPANY_NOT_FOUND = '1400';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_MESSAGE_FAILED_CREATING_BUSINESS_UNIT_ADDRESS = 'Business Unit Address can not be created';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_MESSAGE_BUSINESS_UNIT_UUID_MISSING = 'Uuid value is missing.';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_MESSAGE_FAILED_UPDATING_BUSINESS_UNIT_ADDRESS = 'Business Unit Address could not be updated.';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_NOT_FOUND = 'Business Unit Address could not be found.';
-
-    /**
-     * @var string
-     */
-    public const RESPONSE_MESSAGE_BUSINESS_UNIT_ADDRESS_FOR_COMPANY_NOT_FOUND = 'Business Unit Address for the Company not found';
-
-    /**
-     * @var string
-     */
     public const RESPONSE_CODE_USER_IS_NOT_SPECIFIED = '1001';
 
     /**
@@ -102,4 +52,24 @@ class CompaniesCompanyAddressesRestApiConfig extends AbstractBundleConfig
      * @var string
      */
     public const ERROR_MESSAGE_COULD_NOT_DELETED = 'Company business unit address could not be deleted.';
+
+    /**
+     * @var string
+     */
+    public const RESPONSE_CODE_COULD_NOT_CREATED = '1003';
+
+    /**
+     * @var string
+     */
+    public const ERROR_MESSAGE_COULD_NOT_CREATED = 'Company business unit address could not be created.';
+
+    /**
+     * @var string
+     */
+    public const RESPONSE_CODE_COULD_NOT_UPDATED = '1004';
+
+    /**
+     * @var string
+     */
+    public const ERROR_MESSAGE_COULD_NOT_UPDATED = 'Company business unit address could not be updated.';
 }

@@ -147,31 +147,4 @@ class CompanyBusinessUnitReaderTest extends Unit
             ),
         );
     }
-
-    /**
-     * @return void
-     */
-    public function testFindDefaultCompanyBusinessUnitByCompanyId(): void
-    {
-        $idCompany = 1;
-
-        $this->companyBusinessUnitTransferMock->expects($this->atLeastOnce())
-            ->method('requireFkCompany')
-            ->willReturn($this->companyBusinessUnitTransferMock);
-
-        $this->companyBusinessUnitTransferMock->expects($this->atLeastOnce())
-            ->method('getFkCompany')
-            ->willReturn($idCompany);
-
-        $this->companyBusinessUnitFacadeMock->expects($this->atLeastOnce())
-            ->method('findDefaultBusinessUnitByCompanyId')
-            ->willReturn($this->companyBusinessUnitTransferMock);
-
-        static::assertEquals(
-            $this->companyBusinessUnitTransferMock,
-            $this->companyBusinessUnitReader->findDefaultCompanyBusinessUnitByCompanyId(
-                $this->companyBusinessUnitTransferMock,
-            ),
-        );
-    }
 }

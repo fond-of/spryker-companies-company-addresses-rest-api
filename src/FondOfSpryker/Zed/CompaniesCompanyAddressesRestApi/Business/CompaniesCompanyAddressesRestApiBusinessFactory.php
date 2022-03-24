@@ -4,6 +4,10 @@ namespace FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business;
 
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleter;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Deleter\CompanyUnitAddressDeleterInterface;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Mapper\CompanyUnitAddressMapper;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Mapper\CompanyUnitAddressMapperInterface;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Mapper\RestCompanyUnitAddressAttributesMapper;
+use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Mapper\RestCompanyUnitAddressAttributesMapperInterface;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyBusinessUnitReader;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyBusinessUnitReaderInterface;
 use FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Reader\CompanyUnitAddressReader;
@@ -28,7 +32,8 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
     {
         return new CompanyUnitAddressWriter(
             $this->createCompanyUnitAddressReader(),
-            $this->createCompanyBusinessUnitReader(),
+            $this->createCompanyUnitAddressMapper(),
+            $this->createRestCompanyUnitAddressAttributesMapper(),
             $this->getCompanyUnitAddressFacade(),
         );
     }
@@ -53,6 +58,19 @@ class CompaniesCompanyAddressesRestApiBusinessFactory extends AbstractBusinessFa
             $this->getRepository(),
             $this->getCompanyBusinessUnitFacade(),
         );
+    }
+
+    /**
+     * @return \FondOfSpryker\Zed\CompaniesCompanyAddressesRestApi\Business\Mapper\CompanyUnitAddressMapperInterface
+     */
+    protected function createCompanyUnitAddressMapper(): CompanyUnitAddressMapperInterface
+    {
+        return new CompanyUnitAddressMapper($this->createCompanyBusinessUnitReader());
+    }
+
+    protected function createRestCompanyUnitAddressAttributesMapper(): RestCompanyUnitAddressAttributesMapperInterface
+    {
+        return new RestCompanyUnitAddressAttributesMapper();
     }
 
     /**

@@ -154,7 +154,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->restResponseMock,
             $this->companyUnitAddressWriter->createCompanyUnitAddress(
                 $this->restRequestMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
+                $this->restCompanyUnitAddressAttributesTransferMock,
             ),
         );
     }
@@ -197,7 +197,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->restResponseMock,
             $this->companyUnitAddressWriter->createCompanyUnitAddress(
                 $this->restRequestMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
+                $this->restCompanyUnitAddressAttributesTransferMock,
             ),
         );
     }
@@ -249,7 +249,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->restResponseMock,
             $this->companyUnitAddressWriter->createCompanyUnitAddress(
                 $this->restRequestMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
+                $this->restCompanyUnitAddressAttributesTransferMock,
             ),
         );
     }
@@ -303,7 +303,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->restResponseMock,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
+                $this->restCompanyUnitAddressAttributesTransferMock,
             ),
         );
     }
@@ -346,7 +346,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->restResponseMock,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
+                $this->restCompanyUnitAddressAttributesTransferMock,
             ),
         );
     }
@@ -398,7 +398,7 @@ class CompanyUnitAddressWriterTest extends Unit
             $this->restResponseMock,
             $this->companyUnitAddressWriter->updateCompanyUnitAddress(
                 $this->restRequestMock,
-                $this->restCompanyUnitAddressAttributesTransferMock
+                $this->restCompanyUnitAddressAttributesTransferMock,
             ),
         );
     }

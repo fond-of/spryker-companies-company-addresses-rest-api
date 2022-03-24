@@ -58,22 +58,4 @@ class CompaniesCompanyAddressesRestApiToCompanyBusinessUnitFacadeBridgeTest exte
             $this->bridge->getCompanyBusinessUnitById($this->companyBusinessUnitTransferMock),
         );
     }
-
-    /**
-     * @return void
-     */
-    public function testFindDefaultBusinessUnitByCompanyId(): void
-    {
-        $idCompany = 1;
-
-        $this->facadeMock->expects(static::atLeastOnce())
-            ->method('findDefaultBusinessUnitByCompanyId')
-            ->with($idCompany)
-            ->willReturn($this->companyBusinessUnitTransferMock);
-
-        static::assertEquals(
-            $this->companyBusinessUnitTransferMock,
-            $this->bridge->findDefaultBusinessUnitByCompanyId($idCompany),
-        );
-    }
 }

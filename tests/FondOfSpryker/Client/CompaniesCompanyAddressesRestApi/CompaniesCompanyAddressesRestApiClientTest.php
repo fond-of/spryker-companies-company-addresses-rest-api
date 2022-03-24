@@ -94,27 +94,6 @@ class CompaniesCompanyAddressesRestApiClientTest extends Unit
     /**
      * @return void
      */
-    public function testFindDefaultCompanyBusinessUnitByCompanyId(): void
-    {
-        $this->factoryMock->expects(static::atLeastOnce())
-            ->method('createZedCompaniesCompanyAddressesRestApiStub')
-            ->willReturn($this->stubMock);
-
-        $this->stubMock->expects(static::atLeastOnce())
-            ->method('findDefaultCompanyBusinessUnitByCompanyId')
-            ->willReturn($this->companyBusinessUnitTransferMock);
-
-        static::assertEquals(
-            $this->companyBusinessUnitTransferMock,
-            $this->client->findDefaultCompanyBusinessUnitByCompanyId(
-                $this->companyBusinessUnitTransferMock,
-            ),
-        );
-    }
-
-    /**
-     * @return void
-     */
     public function testDeleteCompanyUnitAddressByRestCompaniesCompanyAddressesDeleteRequest(): void
     {
         $this->factoryMock->expects(static::atLeastOnce())

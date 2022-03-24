@@ -100,7 +100,7 @@ class CompanyUnitAddressWriter implements CompanyUnitAddressWriterInterface
         $companyUnitAddressTransfer = $companyUnitAddressTransfer->fromArray(
             $this->companyUnitAddressMapper->fromRestCompaniesCompanyAddressesRequest(
                 $restCompaniesCompanyAddressesRequestTransfer,
-            )->toArray(),
+            )->modifiedToArray(),
             true,
         );
 

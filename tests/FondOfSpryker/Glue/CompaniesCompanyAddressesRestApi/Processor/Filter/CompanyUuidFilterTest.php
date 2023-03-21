@@ -4,7 +4,6 @@ namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Filter;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
-use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface;
 use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
 

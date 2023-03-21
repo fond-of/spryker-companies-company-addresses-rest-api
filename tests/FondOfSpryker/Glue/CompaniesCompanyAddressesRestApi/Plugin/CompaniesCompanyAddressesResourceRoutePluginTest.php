@@ -4,7 +4,6 @@ namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Plugin;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
-use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceRouteCollectionInterface;
 

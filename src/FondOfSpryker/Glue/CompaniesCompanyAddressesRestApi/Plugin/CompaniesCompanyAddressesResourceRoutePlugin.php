@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Plugin;
 
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
-use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
+use FondOfOryx\Glue\CompaniesRestApi\CompaniesRestApiConfig;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceRouteCollectionInterface;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceRoutePluginInterface;
@@ -59,6 +59,6 @@ class CompaniesCompanyAddressesResourceRoutePlugin extends AbstractPlugin implem
      */
     public function getParentResourceType(): string
     {
-        return CompaniesRestApiConfig::RESOURCE_COMPANIES;
+        return CompaniesRestApiConfig::RESOURCE_COMPANIES_REST_API;
     }
 }

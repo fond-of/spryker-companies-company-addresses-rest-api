@@ -4,7 +4,7 @@ namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Plugin;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
-use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
+use FondOfOryx\Glue\CompaniesRestApi\CompaniesRestApiConfig;
 use Generated\Shared\Transfer\RestCompanyUnitAddressAttributesTransfer;
 use Spryker\Glue\GlueApplicationExtension\Dependency\Plugin\ResourceRouteCollectionInterface;
 
@@ -94,7 +94,7 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
     public function testGetParentResourceType(): void
     {
         $this->assertSame(
-            CompaniesRestApiConfig::RESOURCE_COMPANIES,
+            CompaniesRestApiConfig::RESOURCE_COMPANIES_REST_API,
             $this->companiesCompanyAddressesResourceRoutePlugin->getParentResourceType(),
         );
     }

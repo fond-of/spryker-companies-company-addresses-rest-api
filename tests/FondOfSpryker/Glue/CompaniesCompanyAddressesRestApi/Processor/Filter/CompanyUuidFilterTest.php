@@ -3,6 +3,7 @@
 namespace FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\Processor\Filter;
 
 use Codeception\Test\Unit;
+use FondOfSpryker\Glue\CompaniesCompanyAddressesRestApi\CompaniesCompanyAddressesRestApiConfig;
 use FondOfSpryker\Glue\CompaniesRestApi\CompaniesRestApiConfig;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface;
 use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
@@ -51,7 +52,7 @@ class CompanyUuidFilterTest extends Unit
 
         $this->restRequestMock->expects(static::atLeastOnce())
             ->method('findParentResourceByType')
-            ->with(CompaniesRestApiConfig::RESOURCE_COMPANIES)
+            ->with(CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES)
             ->willReturn($this->restResourceMock);
 
         $this->restResourceMock->expects(static::atLeastOnce())
@@ -71,7 +72,7 @@ class CompanyUuidFilterTest extends Unit
     {
         $this->restRequestMock->expects(static::atLeastOnce())
             ->method('findParentResourceByType')
-            ->with(CompaniesRestApiConfig::RESOURCE_COMPANIES)
+            ->with(CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES)
             ->willReturn(null);
 
         static::assertEquals(

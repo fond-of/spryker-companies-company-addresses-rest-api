@@ -31,6 +31,11 @@ class CompaniesCompanyAddressesRestApiConfig extends AbstractBundleConfig
     /**
      * @var string
      */
+    public const RESOURCE_COMPANIES = 'companies';
+
+    /**
+     * @var string
+     */
     public const CONTROLLER_COMPANIES_COMPANY_ADDRESSES = 'companies-company-addresses-resource';
 
     /**

@@ -59,6 +59,6 @@ class CompaniesCompanyAddressesResourceRoutePlugin extends AbstractPlugin implem
      */
     public function getParentResourceType(): string
     {
-        return CompaniesRestApiConfig::RESOURCE_COMPANIES;
+        return CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES;
     }
 }

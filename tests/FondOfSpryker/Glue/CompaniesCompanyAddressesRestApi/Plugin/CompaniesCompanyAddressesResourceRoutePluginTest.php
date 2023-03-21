@@ -94,7 +94,7 @@ class CompaniesCompanyAddressesResourceRoutePluginTest extends Unit
     public function testGetParentResourceType(): void
     {
         $this->assertSame(
-            CompaniesRestApiConfig::RESOURCE_COMPANIES,
+            CompaniesCompanyAddressesRestApiConfig::RESOURCE_COMPANIES,
             $this->companiesCompanyAddressesResourceRoutePlugin->getParentResourceType(),
         );
     }

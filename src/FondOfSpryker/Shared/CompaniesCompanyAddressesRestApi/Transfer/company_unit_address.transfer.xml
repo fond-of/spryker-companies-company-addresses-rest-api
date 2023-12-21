@@ -6,7 +6,7 @@
         <property name="externalReference" type="string"/>
         <property name="name1" type="string"/>
         <property name="name2" type="string"/>
-        <property name="country" type="string"/>
+        <property name="country" type="Country" strict="true"/>
         <property name="fax" type="string"/>
         <property name="gln" type="string"/>
         <property name="isDeleted" type="bool"/>

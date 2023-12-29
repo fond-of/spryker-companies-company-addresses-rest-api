@@ -32,10 +32,14 @@ class CompanyUnitAddressMapper implements CompanyUnitAddressMapperInterface
     public function fromRestCompanyUnitAddressAttributes(
         RestCompanyUnitAddressAttributesTransfer $restCompanyUnitAddressAttributesTransfer
     ): CompanyUnitAddressTransfer {
-        return (new CompanyUnitAddressTransfer())->fromArray(
-            $restCompanyUnitAddressAttributesTransfer->toArray(),
-            true,
-        )->setIso2Code($restCompanyUnitAddressAttributesTransfer->getCountry());
+        $data = $restCompanyUnitAddressAttributesTransfer->toArray();
+
+        if (array_key_exists('country', $data)) {
+            unset($data['country']);
+        }
+
+        return (new CompanyUnitAddressTransfer())->fromArray($data, true)
+            ->setIso2Code($restCompanyUnitAddressAttributesTransfer->getCountry());
     }
 
     /**
